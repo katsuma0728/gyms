@@ -1,0 +1,6 @@
+ja:
+  enum:
+    user:
+      sex:
+        man: "男性"
+        woman: "女性"
