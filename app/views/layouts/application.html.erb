@@ -21,14 +21,35 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-              <% if user_signed_in? %>
+              <% if admin_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to new_post_path do %>
-                    <i class="fas fa-edit fa-lg"></i>
+                  <%= link_to new_post_blog_path do %>
+                    <i class="fas fa-file-plus fa-lg"></i>
                   <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to posts_path do %>
+                  <%= link_to post_blogs_path do %>
+                    <i class="fas fa-home fa-lg"></i>
+                  <% end %>
+                </li>
+                <li>
+                 <%= link_to destroy_admin_session_path, method: :delete do %>
+                   <i class="fas fa-sign-out-alt fa-lg"></i>
+                 <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_users_path do %>
+                    <i class="fas fa-user fa-lg"></i>
+                  <% end %>
+                </li>
+              <% elsif user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to new_post_blog_path do %>
+                    <i class="fas fa-file-plus fa-lg"></i>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to post_blogs_path do %>
                     <i class="fas fa-home fa-lg"></i>
                   <% end %>
                 </li>
@@ -44,7 +65,7 @@
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <%= link_to posts_path do %>
+                  <%= link_to post_blogs_path do %>
                     <i class="fas fa-home fa-lg"></i>
                   <% end %>
                 </li>

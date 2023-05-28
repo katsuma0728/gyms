@@ -1,0 +1,45 @@
+<h2>ユーザー編集ページ</h2>
+
+<%= form_with model: @user, url: user_path, method: :patch do |f| %>
+
+  <div class = "field">
+    <%= f.file_field :profile_image, accept: "profile_image/*" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class = "field">
+    <%= f.label :birth_date %>
+    <%= f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) %>
+  </div>
+
+  <div class = "field">
+    <%= f.label :sex %>
+    <%= f.select :sex, User.sexes.keys.to_a, { include_blank: '選択してください'} %>
+  </div>
+
+  <div class = "field">
+    <%= f.label :introduction %><br>
+    <%= f.text_area :introduction %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存" %>
+  </div>
+<% end %>
+
+<div class = "log_out">
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+</div>
+
+<div class = "withdrawal">
+  <%= link_to "退会する", confirm_unsubscribe_path %>
+</div>

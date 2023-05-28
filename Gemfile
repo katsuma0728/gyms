@@ -59,3 +59,5 @@ gem 'devise'
 gem 'rails-i18n', '~> 6.0'
 gem 'devise-i18n'
 gem "enum_help"
+gem 'image_processing', '~> 1.2'
+gem 'kaminari','~> 1.2.1'

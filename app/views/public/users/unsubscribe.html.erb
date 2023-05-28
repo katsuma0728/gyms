@@ -1,0 +1,9 @@
+<h2>退会確認画面</h2>
+
+<div class = "not_withdraw">
+  <%= link_to '退会しない', user_path(@user.id) %>
+</div>
+
+<div class = "withdraw">
+  <%= link_to '退会する', withdraw_user_path(@user.id), method: :patch %>
+</div>
