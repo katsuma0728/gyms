@@ -8,6 +8,8 @@
       <%= f.text_field :title %>
     <h4>投稿内容</h4>
       <%= f.text_area :blog %>
+    <h4>タグ付け</h4>
+    <p><%= f.text_field :name %></p>
     <h4>公開・下書き</h4>
       <%= f.select :status, PostBlog.statuses.keys.to_a %>
     <%= f.submit '投稿' %>

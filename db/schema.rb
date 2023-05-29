@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_26_045252) do
+ActiveRecord::Schema.define(version: 2023_05_29_031408) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2023_05_26_045252) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "content"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -87,11 +88,27 @@ ActiveRecord::Schema.define(version: 2023_05_26_045252) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "post_tags", force: :cascade do |t|
+    t.integer "post_blog_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index "\"post_id\", \"tag_id\"", name: "index_post_tags_on_post_id_and_tag_id", unique: true
+    t.index ["post_blog_id"], name: "index_post_tags_on_post_blog_id"
+    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
+  end
+
   create_table "schedules", force: :cascade do |t|
     t.integer "user_id"
     t.string "title", default: "", null: false
     t.text "memo", default: "", null: false
     t.datetime "start_time", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -116,4 +133,6 @@ ActiveRecord::Schema.define(version: 2023_05_26_045252) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "post_tags", "post_blogs"
+  add_foreign_key "post_tags", "tags"
 end

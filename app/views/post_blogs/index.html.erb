@@ -5,6 +5,13 @@
   <%= f.submit "検索" %>
 <% end %>
 
+<% @tag_list.each do |list| %>
+  <%= link_to search_tag_post_blogs_path(tag_id: list.id) do %>
+    <%= list.name %>
+    <%= "(#{list.post_blogs.count})" %>
+  <% end %>
+<% end %>
+
 <% @post_blogs.each do |post_blog| %>
   <div class = "post_field">
     <%= image_tag post_blog.get_image %>
@@ -12,6 +19,7 @@
       <p>タイトル：<%= post_blog.title %></p>
     <% end %>
     <p>投稿内容：<%= post_blog.blog %></p>
+    <i class="fas fa-tag"><%= post_blog.tags.map(&:name).join(',') %></i>
     <p>ユーザー画像:</p><%= image_tag post_blog.user.get_profile_image(100,100) %>
     <p>ユーザーネーム：<%= post_blog.user.name %></p>
     <p>投稿日: <%= post_blog.created_at.strftime('%Y/%m/%d') %></p>

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   resources :post_blogs, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     get 'search', on: :collection
+    get "search_tag", on: :collection
     resource :likes, only: [:create, :destroy]
     resources :post_comments, only: [:create, :update, :destroy]
   end
