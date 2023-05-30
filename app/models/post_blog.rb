@@ -1,4 +1,6 @@
 class PostBlog < ApplicationRecord
+  attr_accessor :name
+  
   belongs_to :user
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
