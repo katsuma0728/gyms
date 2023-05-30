@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 2023_05_29_031408) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "content"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -93,7 +92,7 @@ ActiveRecord::Schema.define(version: 2023_05_29_031408) do
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"post_id\", \"tag_id\"", name: "index_post_tags_on_post_id_and_tag_id", unique: true
+    t.index ["post_blog_id", "tag_id"], name: "index_post_tags_on_post_blog_id_and_tag_id", unique: true
     t.index ["post_blog_id"], name: "index_post_tags_on_post_blog_id"
     t.index ["tag_id"], name: "index_post_tags_on_tag_id"
   end

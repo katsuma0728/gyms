@@ -9,9 +9,9 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_one_attached :profile_image
-  enum sex: { man: 0, woman: 1}
-  
-  
+  enum sex: { 男性: 0, 女性: 1}
+
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

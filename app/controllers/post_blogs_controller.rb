@@ -27,8 +27,12 @@ class PostBlogsController < ApplicationController
   end
 
   def index
-    @post_blogs = PostBlog.all.page(params[:page]).per(5)
+    @post_blogs = PostBlog.published.page(params[:page]).per(5)
     @tag_list = Tag.all
+  end
+
+  def confirm
+    @post_blogs = current_user.post_blogs.draft.page(params[:page]).per(5)
   end
 
   def show
@@ -39,7 +43,7 @@ class PostBlogsController < ApplicationController
 
   def edit
     @post_blog = PostBlog.find(params[:id])
-    @tag_list = @post.tags.pluck(:name).join('#')
+    @tag_list = @post_blog.tags.pluck(:name).join('#')
   end
 
   def update
@@ -59,7 +63,7 @@ class PostBlogsController < ApplicationController
   private
 
   def post_blog_params
-    params.require(:post_blog).permit(:image, :title, :blog, :status, :user_id, :content, :tag_id, :post_tag_id)
+    params.require(:post_blog).permit(:image, :title, :blog, :status, :user_id, :tag_id, :post_tag_id)
   end
 
 end

@@ -7,27 +7,27 @@
   </div>
 
   <div class="field">
-    <%= f.label :name %>
+    <h5>ユーザーネーム</h5>
     <%= f.text_field :name %>
   </div>
 
   <div class = "field">
-    <%= f.label :birth_date %>
+    <h5>年齢</h5>
     <%= f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) %>
   </div>
 
   <div class = "field">
-    <%= f.label :sex %>
-    <%= f.select :sex, User.sexes.keys.to_a, { include_blank: '選択してください'} %>
+    <h5>性別</h5>
+    <%= f.select :sex , User.sexes_i18n.keys.to_a, { include_blank: '選択してください'} %>
   </div>
 
   <div class = "field">
-    <%= f.label :introduction %><br>
+    <h5>ひとこと！</h5>
     <%= f.text_area :introduction %>
   </div>
 
   <div class="field">
-    <%= f.label :email %>
+    <h5>メールアドレス</h5>
     <%= f.email_field :email %>
   </div>
 
