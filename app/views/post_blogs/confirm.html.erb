@@ -3,11 +3,14 @@
 <% @post_blogs.each do |post_blog| %>
   <div class = "post_field">
     <%= image_tag post_blog.get_image %>
-    <%= link_to post_blog_path(post_blog.id) do %>
-      <p>タイトル：<%= post_blog.title %></p>
-    <% end %>
+    <p>タイトル：<%= post_blog.title %></p>
     <p>投稿内容：<%= post_blog.blog %></p>
+    <!--配列の要素１つ１つを:nameの型にする-->
     <i class="fas fa-tag"><%= post_blog.tags.map(&:name).join(',') %></i>
+    <!--編集画面へ-->
+    <%= link_to edit_post_blog_path(post_blog.id) do %>
+        <i class="fas fa-edit fa-lg"></i>
+      <% end %>
     <p>ユーザー画像:</p><%= image_tag post_blog.user.get_profile_image(100,100) %>
     <p>ユーザーネーム：<%= post_blog.user.name %></p>
     <p>投稿日: <%= post_blog.created_at.strftime('%Y/%m/%d') %></p>

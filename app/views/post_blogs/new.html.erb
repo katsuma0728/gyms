@@ -11,7 +11,8 @@
     <h4>タグ付け</h4>
     <p><%= f.text_field :name %></p>
     <h4>公開・下書き</h4>
-      <%= f.select :status, PostBlog.statuses.keys.to_a %>
+      <!--mapで文字列を取り出す、送る値で変換　セレクト内を日本語化-->
+      <%= f.select :status, PostBlog.statuses_i18n.map{|k, v| [v,k]} %>
     <%= f.submit '投稿' %>
   <% end %>
 </div>

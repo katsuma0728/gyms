@@ -8,7 +8,7 @@
 <% @tag_list.each do |list| %>
   <%= link_to search_tag_post_blogs_path(tag_id: list.id) do %>
     <%= list.name %>
-    <%= "(#{list.post_blogs.count})" %>
+    <%= "(#{list.post_blogs.published.count})" %>
   <% end %>
 <% end %>
 

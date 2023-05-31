@@ -1,11 +1,12 @@
 class PostBlog < ApplicationRecord
+  #これがないとストロングパラメータでnameを追加している関係で、保存時にUnknown attributeエラーが発生する。
   attr_accessor :name
-  
+
   belongs_to :user
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :post_tags, dependent: :destroy
-  has_many :tags, through: :post_tags
+  has_many :tags, through: :post_tags, dependent: :delete_all
   has_one_attached :image
   enum status: { published: 0, draft: 1 }
 
@@ -37,7 +38,12 @@ class PostBlog < ApplicationRecord
 
     # 古いタグを消す
     old_tags.each do |old|
-      self.tags.delete　Tag.find_by(name: old)
+      self.tags.delete Tag.find_by(name: old)
+      
+      check_tag = Tag.find_by(name: old)
+      if check_tag.post_blogs.count == 0
+        check_tag.destroy
+      end
     end
 
     # 新しいタグを保存
