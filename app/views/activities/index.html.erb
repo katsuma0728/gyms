@@ -1,2 +1,12 @@
-<h1>Activities#index</h1>
-<p>Find me in app/views/activities/index.html.erb</p>
+<h1>通知一覧</h1>
+<% if @activities.present? %>
+  <% @activities.each do |activity| %>
+    <%= link_to read_activity_path(activity.user.id), method: :patch do %>
+      <%= activity.subject.name %>さんが<%= activity.action_type_i18n %>
+    <% end %>
+  <%= paginate @activities %>
+  <% end %>
+<% else %>
+  <p>通知はありません</p>
+<% end %>
+

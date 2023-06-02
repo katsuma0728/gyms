@@ -5,3 +5,6 @@ ja:
         published: "公開"
         draft: "下書き"
 
+    activity:
+      action_type:
+        liked_the_post_blog: "投稿にいいねしました"
