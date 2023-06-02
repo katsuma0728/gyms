@@ -77,9 +77,10 @@ class PostBlogsController < ApplicationController
   end
 
   def destroy
-    post_blog = PostBlog.find(params[:id])
-    post_blog.save_tag([])
-    post_blog.destroy
+    @post_blog = PostBlog.find(params[:id])
+    # 配列を送るために空をつくる
+    @post_blog.save_tag([])
+    @post_blog.destroy
     redirect_to post_blogs_path
   end
 

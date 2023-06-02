@@ -6,9 +6,9 @@ class ActivitiesController < ApplicationController
      @activities = current_user.activities.order(created_at: :desc).page(params[:page]).per(10)
   end
 
-  def read
+  def update
     activity = current_user.activities.where(user_id: [current_user.id])
-    unless activity.read?
+    unless activity.update?
       # 通知を読んだらtrue
       activity.update(cheacked: true)
     end
