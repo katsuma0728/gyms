@@ -8,3 +8,4 @@ ja:
     activity:
       action_type:
         liked_the_post_blog: "投稿にいいねしました"
+        commented_on_the_post_blog: "投稿にコメントしました"

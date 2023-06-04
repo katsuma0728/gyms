@@ -5,11 +5,8 @@ class Like < ApplicationRecord
 
   has_one :activity, as: :subject, dependent: :destroy
 
+# いいね後
   after_create_commit :create_activities
-
-  def redirect_path
-    "/#{post_blog.user.user_id}/post_blogs/#{post_blog.id}"
-  end
 
   def name
     user.name

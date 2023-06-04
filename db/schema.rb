@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2023_05_29_031408) do
     t.string "subject_type"
     t.integer "subject_id"
     t.integer "action_type", null: false
-    t.boolean "cheacked", default: false, null: false
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["subject_type", "subject_id"], name: "index_activities_on_subject"
