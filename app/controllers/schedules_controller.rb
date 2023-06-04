@@ -26,11 +26,12 @@ class SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     @schedule.update(schedule_params)
+    redirect_to schedules_path
   end
 
   def destroy
     @schedule = Schedule.find(params[:id])
-    @shedule = Schedule.destroy
+    @schedule.destroy
     redirect_to schedules_path
   end
 
@@ -40,5 +41,5 @@ class SchedulesController < ApplicationController
   def schedule_params
     params.require(:schedule).permit(:user_id, :title, :memo, :start_time)
   end
-  
+
 end

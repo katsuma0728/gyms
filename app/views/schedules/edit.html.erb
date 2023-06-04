@@ -1,2 +1,25 @@
-<h1>Schedules#edit</h1>
-<p>Find me in app/views/schedules/edit.html.erb</p>
+<h1>スケジュール編集</h1>
+<%= form_with model: @schedule, url: schedule_path, method: :patch do |f| %>
+
+  <div class="title">
+    <div class="form-tag">タイトル</div>
+    <%= f.text_field :title %>
+  </div>
+
+
+  <div class="content">
+    <div class="form-tag">メモ</div>
+    <%= f.text_field :memo %>
+  </div>
+
+    <div class="time">
+    <div class="form-tag">時間</div>
+    <%= f.datetime_select :start_time %>
+  </div>
+
+
+  <div class="submit">
+    <%= f.submit '変更' %>
+  </div>
+
+<% end %>

@@ -1,2 +1,21 @@
-<h1>Schedules#show</h1>
-<p>Find me in app/views/schedules/show.html.erb</p>
+<h1>スケジュール詳細</h1>
+<div class="show">
+<p>
+  <strong>タイトル</strong>
+  <%= @schedule.title %>
+</p>
+
+<p>
+  <strong>メモ</strong>
+  <%= @schedule.memo %>
+</p>
+
+<p>
+  <strong>日時</strong>
+  <%= @schedule.start_time.strftime("%m-%d") %>
+</p>
+
+<%= link_to '編集', edit_schedule_path(@schedule.id) %>
+<%= link_to '消去',schedule_path(@schedule.id), method: :delete, data: { confirm: '本当に?' } %>
+<%= link_to '戻る', schedules_path %>
+</div>

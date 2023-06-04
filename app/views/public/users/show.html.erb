@@ -4,11 +4,19 @@
   <%= image_tag @user.get_profile_image(200,200) %>
 </div>
 
-<div class = "edit_user">
-  <%= link_to edit_user_path(current_user) do %>
-    <i class="fas fa-user-cog fa-lg"></i>
-  <% end %>
-</div>
+<% if (current_user.present? && @user.id == current_user.id) || (current_admin.present? && current_admin.email == 'admin@example.com') %>
+  <div class = "edit_user">
+    <%= link_to edit_user_path(@user.id) do %>
+      <i class="fas fa-user-cog fa-lg"></i>
+    <% end %>
+  </div>
+  <div class = "schedule">
+    <%= link_to schedules_path do %>
+      <i class="fal fa-calendar-plus fa-lg"></i>
+    <% end %>
+  </div>
+<% end %>
+
 
 <div class = "name_field">
   <%= @user.name %>
@@ -25,7 +33,3 @@
 <div class = "introduction_field">
   <%= @user.introduction %>
 </div>
-
-<%= link_to schedules_path do %>
-  <i class="fal fa-calendar-plus fa-lg"></i>
-<% end %>

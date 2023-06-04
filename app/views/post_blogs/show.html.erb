@@ -9,8 +9,11 @@
         <% end %>
     <% end %>
   </p>
-  <p>ユーザー画像:</p><%= image_tag @post_blog.user.get_profile_image(100,100) %>
-  <p>ユーザーネーム：<%= @post_blog.user.name %></p>
+  <p>ユーザー画像:</p>
+  <%= link_to user_path(@post_blog.user.id) do %>
+    <%= image_tag @post_blog.user.get_profile_image(100,100) %>
+    <p>ユーザーネーム：<%= @post_blog.user.name %></p>
+  <% end %>
   <p>投稿日: <%= @post_blog.created_at.strftime('%Y/%m/%d') %></p>
   <p>
     <% if (current_user.present? && @post_blog.user.id == current_user.id) || (current_admin.present? && current_admin.email == 'admin@example.com') %>
