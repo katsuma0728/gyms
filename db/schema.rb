@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(version: 2023_05_29_031408) do
 
   create_table "schedules", force: :cascade do |t|
     t.integer "user_id"
-    t.string "title", default: "", null: false
-    t.text "memo", default: "", null: false
+    t.string "title", null: false
+    t.text "memo", null: false
     t.datetime "start_time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

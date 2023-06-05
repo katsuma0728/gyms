@@ -4,7 +4,8 @@ class SchedulesController < ApplicationController
   # before_action :ensure_general_user, only: [:create]
 
   def index
-    @schedules = Schedule.all
+    @user = current_user
+    @schedules = @user.schedules.all
     @schedule = Schedule.new
   end
 

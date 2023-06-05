@@ -14,6 +14,10 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   enum sex: { 男性: 0, 女性: 1}
 
+  # 生年月日から年齢を取得　（現在-生年月日）/ 10000
+  def age
+    (Time.now.in_time_zone('Tokyo').strftime('%Y%m%d').to_i - self.birth_date.strftime('%Y%m%d').to_i) / 10000
+  end
 
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -27,8 +31,6 @@ class User < ApplicationRecord
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
-      #user.birth_date = Time.now
     end
   end
-
 end

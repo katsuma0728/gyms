@@ -15,6 +15,9 @@ class PostComment < ApplicationRecord
   private
 
   def create_activities
-    Activity.create!(subject: self, user_id: post_blog.user.id, action_type: Activity.action_types[:commented_on_the_post_blog] )
+    # 自分の投稿をコメントした場合は通知しない。
+    unless self.user_id == post_blog.user.id
+      Activity.create!(subject: self, user_id: post_blog.user.id, action_type: Activity.action_types[:commented_on_the_post_blog] )
+    end
   end
 end
