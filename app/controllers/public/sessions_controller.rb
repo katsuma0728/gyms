@@ -6,6 +6,12 @@ class Public::SessionsController < Devise::SessionsController
     user_path(current_user)
   end
 
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to post_blogs_path, notice: 'ゲストユーザーとしてログインしました'
+  end
+
   before_action :user_state, only: [:create]
 
  protected

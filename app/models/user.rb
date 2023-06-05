@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :activities, dependent: :destroy
   has_many :schedules, dependent: :destroy
-  
+
   has_one_attached :profile_image
   enum sex: { 男性: 0, 女性: 1}
 
@@ -22,4 +22,13 @@ class User < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  # ゲストログイン
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      #user.birth_date = Time.now
+    end
+  end
+
 end

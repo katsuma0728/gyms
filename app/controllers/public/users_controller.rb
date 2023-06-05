@@ -1,5 +1,7 @@
 class Public::UsersController < ApplicationController
 
+  before_action :ensure_general_user, only: [:update, :unsubscribe]
+
   def show
     @user = User.find(params[:id])
   end
@@ -23,6 +25,12 @@ class Public::UsersController < ApplicationController
     @user.update(is_deleted: :true)
     reset_session
     redirect_to root_path
+  end
+
+  def ensure_general_user
+    if current_user.email == "guest@example.com"
+      redirect_to root_path
+    end
   end
 
   private

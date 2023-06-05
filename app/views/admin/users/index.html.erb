@@ -5,6 +5,7 @@
     <tr>
       <th>プロフィール画像</th>
       <th>ユーザー名</th>
+      <th>メールアドレス</th>
       <th>性別</th>
       <th>年齢</th>
       <th>アカウントステータス</th>
@@ -15,6 +16,7 @@
       <tr>
         <td><%= image_tag user.get_profile_image(50,50) %></td>
         <td><%= link_to user.name, admin_user_path(user.id) %></td>
+        <td><%= user.email %></td>
         <td><%= user.sex %></td>
         <td><%= user.birth_date %></td>
         <td><%= user.is_deleted ? '退会': '有効' %></td>
