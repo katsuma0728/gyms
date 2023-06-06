@@ -17,7 +17,7 @@
 <% if (current_user.present? && @schedule.user.id == current_user.id) || (current_admin.present? && current_admin.email == 'admin@example.com') %>
   <%= link_to '編集', edit_schedule_path(@schedule.id) %>
   <%= link_to '消去',schedule_path(@schedule.id), method: :delete, data: { confirm: '本当に?' } %>
-  <%= link_to '戻る', schedules_path %>
+  <%= link_to '戻る', schedules_path(current_user) %>
 <% else %>
   <%= link_to '戻る', user_path(@schedule.user.id) %>
 <% end %>

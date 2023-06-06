@@ -17,9 +17,6 @@
   </div>
 <% end %>
 
-<% if (current_user.present? && current_user.email == 'guest@example.com') %>
-  <%= link_to "会員登録へ", destroy_user_session_path, method: :delete %>
-<% else %>
   <div class = "name_field">
     <%= @user.name %>
   </div>
@@ -35,7 +32,6 @@
   <div class = "introduction_field">
     <%= @user.introduction %>
   </div>
-<% end %>
 
 <%= month_calendar events: @schedules do |date, schedules| %>
   <%= date.day %>

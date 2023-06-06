@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header class = "shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand p-3" href="/"><%= "ロゴ" %></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+      <!--sticky-top=navbarを固定-->
+      <nav class = "navbar navbar-expand-lg navbar-light sticky-top" style = "background-color: #A9A9A9;">
+        <div class = "container">
+          <a class = "navbar-brand p-3" href = "/"><%= "ロゴ" %></a>
+          <button class = "navbar-toggler" type = "button" data-toggle = "collapse" data-target = "#navbarNavDropdown"
+                        aria-controls = "navbarNavDropdown" aria-expanded = "false" aria-label = "Toggle navigation">
+            <span class = "navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <div class = "collapse navbar-collapse" id = "navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in? %>
                 <li class="nav-item">
