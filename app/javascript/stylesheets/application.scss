@@ -1,2 +1,13 @@
 @use '~bootstrap/scss/bootstrap';
 @use '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+
+.top_background {
+     background-image: url("../images/gyms_top_background_image.jpg");
+     background-size: cover;
+     height: 100vh;
+}
+
+ul {
+    list-style-type: none;
+  }

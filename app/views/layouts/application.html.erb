@@ -10,9 +10,9 @@
   </head>
 
   <body>
-    <header class = "shadow-sm">
-      <!--sticky-top=navbarを固定-->
-      <nav class = "navbar navbar-expand-lg navbar-light sticky-top" style = "background-color: #A9A9A9;">
+    <!--sticky-top=navbarを固定-->
+    <header class = "shadow-sm sticky-top">
+      <nav class = "navbar navbar-expand-lg navbar-light" style = "background-color: #808080;">
         <div class = "container">
           <a class = "navbar-brand p-3" href = "/"><%= "ロゴ" %></a>
           <button class = "navbar-toggler" type = "button" data-toggle = "collapse" data-target = "#navbarNavDropdown"
@@ -24,49 +24,49 @@
               <% if admin_signed_in? %>
                 <li class="nav-item">
                   <%= link_to new_post_blog_path do %>
-                    <i class="fas fa-file-plus fa-lg"></i>
+                    <i class="fas fa-file-plus fa-2x text-white"></i>
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to post_blogs_path do %>
-                    <i class="fas fa-home fa-lg"></i>
+                    <i class="fas fa-home fa-2x text-white"></i>
                   <% end %>
                 </li>
                 <li>
                  <%= link_to destroy_admin_session_path, method: :delete do %>
-                   <i class="fas fa-sign-out-alt fa-lg"></i>
+                   <i class="fas fa-sign-out-alt fa-2x text-white"></i>
                  <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to admin_users_path do %>
-                    <i class="fas fa-user fa-lg"></i>
+                    <i class="fas fa-user fa-2x text-white"></i>
                   <% end %>
                 </li>
               <% elsif user_signed_in? %>
-                <li class="nav-item">
+                <li class="nav-item mx-4">
                   <%= link_to new_post_blog_path do %>
-                    <i class="far fa-file-alt fa-lg"></i>
+                    <i class="far fa-file-alt fa-2x text-white"></i>
                   <% end %>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mx-4">
                   <%= link_to post_blogs_path do %>
-                    <i class="fas fa-home fa-lg"></i>
+                    <i class="fas fa-home fa-2x text-white"></i>
                   <% end %>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mx-4">
                   <%= link_to activities_path do %>
-                    <i class="fas fa-bell fa-lg"></i>
+                    <i class="fas fa-bell fa-2x text-white"></i>
                   <% end %>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mx-4">
                   <%= link_to user_path(current_user.id) do %>
-                    <i class="fas fa-user fa-lg"></i>
+                    <i class="fas fa-user fa-2x text-white"></i>
                   <% end %>
                 </li>
               <% else %>
                 <li class="nav-item">
                   <%= link_to post_blogs_path do %>
-                    <i class="fas fa-home fa-lg"></i>
+                    <i class= "fas fa-home fa-2x text-white"></i>
                   <% end %>
                 </li>
               <% end %>
@@ -78,7 +78,23 @@
     <main>
       <%= yield %>
     </main>
-    <footer class="bg-dark text-white pt-5 pb-4">
+    <footer class=" fixed-bottom text-center text-white" style="background-color: #808080">
+      <div class="container pt-4">
+         <!--Section: Social media -->
+        <div class="mb-4 ms-1">
+          <i class="fab fa-facebook-f mx-3"></i>
+          <i class="fab fa-twitter mx-3"></i>
+          <i class="fab fa-google mx-3"></i>
+          <i class="fab fa-instagram mx-3"></i>
+          <i class="fab fa-linkedin mx-3"></i>
+          <i class="fab fa-github mx-3"></i>
+        </div>
+         <!--Section: Social media -->
+      </div>
+      <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      </div>
     </footer>
   </body>
 </html>
