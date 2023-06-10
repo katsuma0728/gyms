@@ -1,6 +1,8 @@
 class Public::UsersController < ApplicationController
 
   before_action :ensure_general_user, only: [:update, :unsubscribe]
+  # カレンダーのカスタマイズ、日曜日を始まりに
+  before_action :set_beginning_of_week
 
   def show
     @user = User.find(params[:id])
@@ -38,5 +40,10 @@ class Public::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:profile_image, :name, :birth_date, :sex, :introduction, :email)
+  end
+
+  # カレンダーのカスタマイズ、日曜日を始まりに
+  def set_beginning_of_week
+    Date.beginning_of_week = :sunday
   end
 end

@@ -1,34 +1,35 @@
 <div class = "top_background">
-  <div class="d-flex align-items-center" style="height: 50%;">
+  <div class="d-flex align-items-center justify-content-center" style="height: 80%;">
     <div class = "container">
       <div class = "row mt-5">
-        <div class = "col-6 offset-3 text-white">
-          <h2><strong>gyms</strong>でモチベーションUP！</h2>
-          <ul>
-            <li>ブログ投稿、トレーニングスケジュールを共有しよう！</li>
-            <li><i class="far fa-file-alt text-white"></i>=ブログ投稿</li>
-            <li><i class="fas fa-home text-white"></i>=みんなの投稿</li>
-            <li><i class="fas fa-bell text-white"></i>=いいね、コメント通知</li>
-            <li><i class="fas fa-user text-white"></i>=マイページ</li>
-          </ul>
+        <div class = "col-6 offset-6 top_text">
+          <h1><strong>gyms</strong>でモチベーションUP！</h1>
+          <h5>~ブログ投稿、トレーニングスケジュールを共有しよう~</h5>
+          <!--<ul>-->
+          <!--  <li>ブログ投稿、トレーニングスケジュールを共有しよう！</li>-->
+          <!--  <li><i class="far fa-file-alt text-white"></i>=ブログ投稿</li>-->
+          <!--  <li><i class="fas fa-home text-white"></i>=みんなの投稿</li>-->
+          <!--  <li><i class="fas fa-bell text-white"></i>=いいね、コメント通知</li>-->
+          <!--  <li><i class="fas fa-user text-white"></i>=マイページ</li>-->
+          <!--</ul>-->
         </div>
       </div>
       <div class = "row mt-5">
         <div class = "col-6 offset-3 text-white">
-          <h2 class><strong>早速使ってみよう！</strong></h2>
+          <h2 class = "top_text"><strong>早速使ってみよう！</strong></h2>
         </div>
       </div>
       <div class = "row mt-5">
       <% if admin_signed_in? %>
         <div class = "col-4">
-          <button class="btn btn-secondary btn btn-block" type="button">
-            <%= link_to "ユーザー管理へ", admin_users_path %>
+          <button class="btn btn-secondary btn btn-block text-white" type="button">
+            <%= link_to "ユーザー管理へ", admin_users_path, class: "text-white" %>
           </button>
         </div>
       <% elsif user_signed_in? %>
         <div class = "col-4">
           <button class="btn btn-secondary btn btn-block" type="button">
-            <%= link_to "投稿してみよう！", new_post_blog_path %>
+            <%= link_to "投稿してみよう！", new_post_blog_path, class: "text-white" %>
           </button>
         </div>
       <% else %>

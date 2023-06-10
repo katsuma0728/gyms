@@ -1,5 +1,9 @@
 class SchedulesController < ApplicationController
 
+# カレンダーのカスタマイズ、日曜日を始まりに
+before_action :set_beginning_of_week
+
+
   # ゲストユーザー管理
   # before_action :ensure_general_user, only: [:create]
 
@@ -53,4 +57,8 @@ class SchedulesController < ApplicationController
     params.require(:schedule).permit(:user_id, :title, :memo, :start_time)
   end
 
+  # カレンダーのカスタマイズ、日曜日を始まりに
+  def set_beginning_of_week
+    Date.beginning_of_week = :sunday
+  end
 end

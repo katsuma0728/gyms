@@ -8,6 +8,37 @@
      height: 100vh;
 }
 
+.top_text {
+    color: #FFFF00;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.background {
+    height: 100vh;
+    background-color: #DCDCDC;
+}
+
 ul {
     list-style-type: none;
   }
+
+.calendar {
+    background-color: #FFFFFF;
+}
+
+.prev-month {
+// カレンダーのカスタマイズ、日付調整、要素は存在するが見えないようにする
+  visibility: hidden;
+}
+
+.next-month {
+// カレンダーのカスタマイズ、日付調整、要素は存在するが見えないようにする
+  visibility: hidden;
+}
+
+.day {
+  height: 100px !important;
+}
+
+// .sec 子孫関係
+//vertical-align: baselin
