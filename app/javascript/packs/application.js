@@ -13,8 +13,9 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
-import 'simple_calendar'
+//import 'simple_calendar'
 
+// 以降のプログラムが動かなくなる
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

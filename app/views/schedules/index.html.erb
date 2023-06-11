@@ -1,69 +1,60 @@
-<div class="toppage">
-  <h1 class="top">カレンダー</h1>
-  </br>
-
-  <div class="row">
-    <div class="col-md-4">
-    	<div class="schedule">今後の予定一覧</div>
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th>日程</th>
-            <th>タイトル</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @schedules.each do |schedule| %>
-            <tr>
-              <td><%= schedule.start_time.strftime("%m-%d") %></td>
-              <td>
-                <%= link_to schedule_path(schedule.id) do %>
-                  <%= schedule.title %>
-                <% end %>
-              </td>
-            </tr>
+<div class="d-flex align-items-center justify-content-center" style="height: 70%;">
+  <div class = "container">
+    <div class="row mt-5">
+       <div class="col-4 mt-5">
+  	   <h5>トレーニングスケジュール</h5>
+          <table class="table" style = "background-color: #FFFFFF;">
+            <thead>
+              <tr>
+                <th>日程</th>
+                <th>種目</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @schedules.each do |schedule| %>
+                <tr>
+                  <td><%= schedule.start_time.strftime("%m-%d") %></td>
+                  <td>
+                    <%= link_to schedule_path(schedule.id) do %>
+                      <%= schedule.title %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= form_with model: @schedule, url: schedules_path, method: :post do |f| %>
+            <div class="title mt-2">
+              <div class="form-tag">種目</div>
+              <%= f.text_field :title %>
+            </div>
+            <div class="content mt-2">
+              <div class="form-tag">メモ</div>
+              <%= f.text_field :memo %>
+            </div>
+            <div class="time mt-2">
+              <div class="form-tag">時間</div>
+              <%= f.datetime_select :start_time %>
+            </div>
+            <div class="submit mt-3">
+              <%= f.submit '登録', class: "btn btn-success" %>
+            </div>
           <% end %>
-        </tbody>
-      </table>
+      </div>
+      <div class="col-8 mt-5">
+        <%= month_calendar events: @schedules do |date, schedules| %>
+          <%= date.day %>
 
-      <%= form_with model: @schedule, url: schedules_path, method: :post do |f| %>
-
-        <div class="title">
-          <div class="form-tag">タイトル</div>
-          <%= f.text_field :title %>
-        </div>
-
-        <div class="content">
-          <div class="form-tag">メモ</div>
-          <%= f.text_field :memo %>
-        </div>
-
-        <div class="time">
-          <div class="form-tag">時間</div>
-          <%= f.datetime_select :start_time %>
-        </div>
-
-        <div class="submit">
-          <%= f.submit '登録' %>
-        </div>
-      <% end %>
-    </div>
-
-  </br>
-
-    <div class="col-md-8">
-      <%= month_calendar events: @schedules do |date, schedules| %>
-        <%= date.day %>
-
-        <% schedules.each do |schedule| %>
-          <div>
-            <%= link_to schedule_path(schedule.id) do %>
-              <%= schedule.title %>
-            <% end %>
-          </div>
+          <% schedules.each do |schedule| %>
+            <div>
+              <%= link_to schedule_path(schedule.id) do %>
+              <!--truncate文字数制限-->
+                <%= schedule.title.truncate(8) %>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
