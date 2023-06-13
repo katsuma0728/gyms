@@ -1,9 +1,13 @@
-<h2>退会確認画面</h2>
-
-<div class = "not_withdraw">
-  <%= link_to '退会しない', user_path(@user.id) %>
-</div>
-
-<div class = "withdraw">
-  <%= link_to '退会する', withdraw_user_path(@user.id), method: :patch %>
+<div class = "unsubscribe_background">
+  <div class="d-flex align-items-center justify-content-center" style="height: 50%;">
+    <div class = "container">
+      <div class = "row mt-5">
+        <div class = "col-6">
+          <h1 class = "text-white"><strong>本当に退会しますか？</strong></h1>
+          <%= link_to '退会しない', user_path(@user.id), class: "btn btn-secondary btn-lg mt-3 mx-5" %>
+          <%= link_to '退会する', withdraw_user_path(@user.id), method: :patch, class: "btn btn-danger btn-lg mt-3" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -13,7 +13,7 @@
             <tbody>
               <% @schedules.each do |schedule| %>
                 <tr>
-                  <td><%= schedule.start_time.strftime("%m-%d") %></td>
+                  <td><%= l schedule.start_time, format: :short %></td>
                   <td>
                     <%= link_to schedule_path(schedule.id) do %>
                       <%= schedule.title %>

@@ -1,12 +1,23 @@
-<h1>通知一覧</h1>
-<% if @activities.present? %>
-  <% @activities.each do |activity| %>
-    <%= link_to read_activity_path(activity.id), method: :patch do %>
-      <%= activity.subject.name %>さんが<%= activity.action_type_i18n %>
-    <% end %>
-  <%= paginate @activities %>
-  <% end %>
-<% else %>
-  <p>通知はありません</p>
-<% end %>
+<div class="d-flex align-items-center justify-content-center" style="height: 20%;">
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-8 offset-2">
+          <% if @activities.present? %>
+          <div class="ralert alert-light" role="alert">
+            <% @activities.each do |activity| %>
+              <span class = "mx-2"><%= image_tag activity.subject.user.get_profile_image(50,50), class: "rounded-circle" %></span>
+              <%= link_to read_activity_path(activity.id), method: :patch do %>
+                <span class = "mr-5"><%= activity.subject.name %>さんが<%= activity.action_type_i18n %>!</span>
+              <% end %>
+              <span class = "ml-5"><%= l activity.created_at, format: :long %></span>
+            <%= paginate @activities %>
+            <% end %>
+          <% else %>
+            <p>通知はありません。</p>
+          <% end %>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
