@@ -9,7 +9,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+<!--全体をflexに、縦並び、両端から均等に配置-->
+  <body class="d-flex flex-column justify-content-between">
     <!--sticky-top=navbarを固定-->
     <header class = "shadow-sm sticky-top">
       <nav class = "navbar navbar-expand-lg navbar-light" style = "background-color: #808080;">
@@ -75,12 +76,13 @@
         </div>
       </nav>
     </header>
-    <main>
-      <div class = "background">
+    <main class="flex-fill background <%= (controller_name == 'homes' && action_name == 'top') ? 'top_background' : '' %> <%= (controller_name == 'users' && action_name == 'unsubscribe') ? 'unsubscribe_background' : '' %>">
+      <!--<div class = "background">-->
         <%= yield %>
-      </div>
+      <!--</div>-->
     </main>
-    <footer class=" fixed-bottom text-center text-white" style="background-color: #808080">
+    <!--<footer class="fixed-bottom text-center text-white" style="background-color: #808080">-->
+    <footer class="text-center text-white" style="background-color: #808080">
       <div class="container pt-4">
          <!--Section: Social media -->
         <div class="mb-4 ms-1">

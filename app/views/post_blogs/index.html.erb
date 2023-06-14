@@ -1,6 +1,6 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-4">
+    <div class = "col-4 mt-5">
       <%= form_with url: search_post_blogs_path, method: :get, local: true do |f| %>
         <%= f.text_field :keyword, value: @keyword, placeholder: "キーワード検索" %>
         <%= f.submit "検索" %>
@@ -12,14 +12,21 @@
         <% end %>
       <% end %>
     </div>
-    <div class = "col-8">
+  </div>
+  <div class = "row">
+    <div class = "col-12 mx-5">
       <% @post_blogs.each do |post_blog| %>
       <div class="card w-50 mx-auto mt-4 shadow-lg">
         <%= image_tag post_blog.get_image, class: "card-img-top" %>
         <div class="card-body">
           <div class = "row">
             <div class = "col-2">
-              <%= image_tag post_blog.user.get_profile_image(50,50), class: "rounded-circle" %>
+              <div class = "row mx-1">
+                <%= image_tag post_blog.user.get_profile_image(50,50), class: "rounded-circle" %>
+              </div>
+              <div class = "row mt-1 mx-2">
+                <%= post_blog.user.name %>
+              </div>
             </div>
             <div class = "col-10">
               <p class = "card-title">
@@ -30,17 +37,19 @@
               <p class = "card-text">
                 <%= post_blog.blog %><i class="fas fa-tag"><%= post_blog.tags.map(&:name).join(',') %></i>
               </p>
-              <p><%= post_blog.user.name %></p>
               <p>
                 <%= link_to "#{post_blog.likes.count}♥", post_blog_path(post_blog.id) %>
                 <%= link_to "#{post_blog.post_comments.count} 件のコメント", post_blog_path(post_blog.id) %>
               </p>
-              <p><%= l post_blog.created_at %></p>
+              <p>
+                <%= l post_blog.created_at %>
+              </p>
             </div>
           </div>
         </div>
       </div>
       <% end %>
+      <%= paginate @post_blogs %>
     </div>
   </div>
 </div>

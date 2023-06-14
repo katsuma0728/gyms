@@ -1,54 +1,44 @@
-<div class = "top_background">
-  <div class="d-flex align-items-center justify-content-center" style="height: 80%;">
-    <div class = "container">
-      <div class = "row mt-5">
-        <div class = "col-6 offset-6 top_text">
-          <h1><strong>gyms</strong>でモチベーションUP！</h1>
-          <h5>~ブログ投稿、トレーニングスケジュールを共有しよう~</h5>
-          <!--<ul>-->
-          <!--  <li>ブログ投稿、トレーニングスケジュールを共有しよう！</li>-->
-          <!--  <li><i class="far fa-file-alt text-white"></i>=ブログ投稿</li>-->
-          <!--  <li><i class="fas fa-home text-white"></i>=みんなの投稿</li>-->
-          <!--  <li><i class="fas fa-bell text-white"></i>=いいね、コメント通知</li>-->
-          <!--  <li><i class="fas fa-user text-white"></i>=マイページ</li>-->
-          <!--</ul>-->
-        </div>
+  <div class = "container p-5">
+    <div class = "row mt-5 p-5">
+      <div class = "col-7 offset-5 top_text mt-5">
+        <h1><strong>gyms</strong>でモチベーションUP！</h1>
+        <h5>~ブログ投稿、トレーニングスケジュールを共有しよう~</h5>
       </div>
-      <div class = "row mt-5">
-        <div class = "col-6 offset-3 text-white">
-          <h2 class = "top_text"><strong>早速使ってみよう！</strong></h2>
-        </div>
-      </div>
-      <div class = "row mt-5">
-      <% if admin_signed_in? %>
-        <div class = "col-4">
-          <button class="btn btn-secondary btn btn-block text-white" type="button">
-            <%= link_to "ユーザー管理へ", admin_users_path, class: "text-white" %>
-          </button>
-        </div>
-      <% elsif user_signed_in? %>
-        <div class = "col-4">
-          <button class="btn btn-secondary btn btn-block" type="button">
-            <%= link_to "投稿してみよう！", new_post_blog_path, class: "text-white" %>
-          </button>
-        </div>
-      <% else %>
-        <div class = "col-4">
-          <button class="btn btn-secondary btn btn-block" type="button">
-            <%= link_to "新規登録", new_user_registration_path, class: "text-white" %>
-          </button>
-        </div>
-        <div class = "col-4">
-          <button class="btn btn-secondary btn btn-block" type="button">
-            <%= link_to "ログイン", new_user_session_path, class: "text-white" %>
-          </button>
-        </div>
-        <div class = "col-4">
-           <button class="btn btn-secondary btn btn-block" type="button">
-             <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "text-white" %>
-           </button>
-        </div>
-      <% end %>
     </div>
+    <div class = "row mt-5">
+      <div class = "col-6 offset-3 text-white mt-5">
+        <h2 class = "top_text"><strong>早速使ってみよう！</strong></h2>
+      </div>
+    </div>
+    <div class = "row mt-5">
+    <% if admin_signed_in? %>
+      <div class = "col-4">
+        <%= link_to admin_users_path do %>
+          <button class="btn btn-secondary btn btn-block text-white" type="button">ユーザー管理へ</button>
+        <% end %>
+      </div>
+    <% elsif user_signed_in? %>
+      <div class = "col-4">
+        <%= link_to new_post_blog_path do %>
+          <button class="btn btn-secondary btn btn-block" type="button">投稿してみよう！</button>
+        <% end %>
+      </div>
+    <% else %>
+      <div class = "col-4">
+        <%= link_to new_user_registration_path do %>
+          <button class="btn btn-secondary btn btn-block" type="button">新規登録</button>
+        <% end %>
+      </div>
+      <div class = "col-4">
+        <%= link_to new_user_session_path do %>
+          <button class="btn btn-secondary btn btn-block" type="button">ログイン</button>
+        <% end %>
+      </div>
+      <div class = "col-4">
+        <%= link_to users_guest_sign_in_path, method: :post do %>
+           <button class="btn btn-secondary btn btn-block" type="button">ゲストログイン</button>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

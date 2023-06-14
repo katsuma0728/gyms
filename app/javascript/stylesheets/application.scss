@@ -1,18 +1,18 @@
 @use '~bootstrap/scss/bootstrap';
 @use '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+// 全体の枠取り　最小値
+body { min-height: 100vh; }
 
 .top_background {
      background-image: url("../images/gyms_top_background_image.jpg");
      background-size: cover;
-     height: 100vh;
 }
 
 .unsubscribe_background {
     background-image: url("../images/gyms_unsubscribe_background_image.jpg");
      background-size: cover;
      background-position: top top;
-     height: 100vh;
 }
 
 .top_text {
@@ -21,8 +21,14 @@
 }
 
 .background {
-    height: 100vh;
+    padding-bottom: 80px;
     background-color: #DCDCDC;
+}
+
+// 背景色を無くす
+.top_background .background,
+.unsubscribe_background .background{
+    background-color: initial;
 }
 
 ul {

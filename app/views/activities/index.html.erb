@@ -1,22 +1,20 @@
-<div class="d-flex align-items-center justify-content-center" style="height: 20%;">
-  <div class = "container">
-    <div class = "row">
-      <div class = "col-8 offset-2">
-          <% if @activities.present? %>
-          <div class="ralert alert-light" role="alert">
-            <% @activities.each do |activity| %>
-              <span class = "mx-2"><%= image_tag activity.subject.user.get_profile_image(50,50), class: "rounded-circle" %></span>
-              <%= link_to read_activity_path(activity.id), method: :patch do %>
-                <span class = "mr-5"><%= activity.subject.name %>さんが<%= activity.action_type_i18n %>!</span>
-              <% end %>
-              <span class = "ml-5"><%= l activity.created_at, format: :long %></span>
-            <%= paginate @activities %>
+<div class = "container p-5">
+  <div class = "row">
+    <div class = "col-8 offset-2">
+        <% if @activities.present? %>
+        <div class="ralert alert-light" role="alert">
+          <% @activities.each do |activity| %>
+            <span class = "mx-2"><%= image_tag activity.subject.user.get_profile_image(50,50), class: "rounded-circle" %></span>
+            <%= link_to read_activity_path(activity.id), method: :patch do %>
+              <span class = "mr-5"><%= activity.subject.name %>さんが<%= activity.action_type_i18n %>!</span>
             <% end %>
-          <% else %>
-            <p>通知はありません。</p>
+            <span class = "ml-5"><%= l activity.created_at, format: :long %></span>
+          <%= paginate @activities %>
           <% end %>
-         </div>
-      </div>
+        <% else %>
+          <p>通知はありません。</p>
+        <% end %>
+       </div>
     </div>
   </div>
 </div>
