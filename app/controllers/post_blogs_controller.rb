@@ -19,7 +19,7 @@ class PostBlogsController < ApplicationController
 
   def search
     #joinsでuserと繋げている。
-    @post_blogs = PostBlog.published.joins(:user).search(params[:keyword])
+    @post_blogs = PostBlog.published.joins(:user).search(params[:keyword]).page(params[:page]).per(5)
     @keyword = params[:keyword]
     # 公開のみの投稿を検索
     post_blog_ids = PostBlog.published.pluck(:id)
@@ -57,7 +57,7 @@ class PostBlogsController < ApplicationController
 
   def edit
     @post_blog = PostBlog.find(params[:id])
-    @tag_list = @post_blog.tags.pluck(:name).join('#')
+    @tag_list = @post_blog.tags.pluck(:name).join(',')
   end
 
   def update

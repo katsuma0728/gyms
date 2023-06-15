@@ -1,20 +1,28 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-4 mt-5">
-      <%= form_with url: search_post_blogs_path, method: :get, local: true do |f| %>
-        <%= f.text_field :keyword, value: @keyword, placeholder: "キーワード検索" %>
-        <%= f.submit "検索" %>
-      <% end %>
-      <% @tag_list.each do |list| %>
-        <%= link_to search_tag_post_blogs_path(tag_id: list.id) do %>
-          <%= list.name %>
-          <%= "(#{list.post_blogs.published.count})" %>
+    <div class = "col-4 mt-5 mb-3">
+      <%= form_with url: search_post_blogs_path, method: :get, local: true, class: "form-inline" do |f| %>
+        <%= f.search_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "form-control" %>
+        <%= button_tag type: "submit", class: "btn btn-success" do %>
+          <i class="fas fa-search"></i>
         <% end %>
       <% end %>
     </div>
   </div>
   <div class = "row">
-    <div class = "col-12 mx-5">
+    <div class = "col-3">
+      <% @tag_list.each do |list| %>
+        <%= link_to search_tag_post_blogs_path(tag_id: list.id) do %>
+          <span class = "bg-secondary text-white rounded-pill m-1 p-1">
+            #<%= list.name %>
+            <%= "(#{list.post_blogs.published.count})" %>
+          </span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-11 offset-1">
       <% @post_blogs.each do |post_blog| %>
       <div class="card w-50 mx-auto mt-4 shadow-lg">
         <%= image_tag post_blog.get_image, class: "card-img-top" %>
@@ -22,27 +30,39 @@
           <div class = "row">
             <div class = "col-2">
               <div class = "row mx-1">
-                <%= image_tag post_blog.user.get_profile_image(50,50), class: "rounded-circle" %>
+                <%= link_to user_path(post_blog.user.id) do %>
+                  <%= image_tag post_blog.user.get_profile_image(50,50), class: "rounded-circle" %>
+                <% end %>
               </div>
               <div class = "row mt-1 mx-2">
-                <%= post_blog.user.name %>
+                <%= link_to user_path(post_blog.user.id) do %>
+                  <%= post_blog.user.name %>
+                <% end %>
               </div>
             </div>
             <div class = "col-10">
-              <p class = "card-title">
+              <h5 class = "card-title">
                 <%= link_to post_blog_path(post_blog.id) do %>
                   <%= post_blog.title %></p>
                 <% end %>
-              </p>
+              </h5>
               <p class = "card-text">
-                <%= post_blog.blog %><i class="fas fa-tag"><%= post_blog.tags.map(&:name).join(',') %></i>
+                <%= post_blog.blog %><%#= post_blog.tags.map(&:name).join('#') %>
+                <% post_blog.tags.each do |tag| %>
+                  <%= link_to search_tag_post_blogs_path(tag_id: tag.id) do %>
+                    <span class = "bg-secondary text-white rounded-pill m-1 p-1">
+                      #<%= tag.name %>
+                      <%= "(#{tag.post_blogs.published.count})" %>
+                    </span>
+                  <% end %>
+                <% end %>
               </p>
-              <p>
-                <%= link_to "#{post_blog.likes.count}♥", post_blog_path(post_blog.id) %>
+              <p class = "text-right">
+                <%= "#{post_blog.likes.count}♥" %>
                 <%= link_to "#{post_blog.post_comments.count} 件のコメント", post_blog_path(post_blog.id) %>
               </p>
-              <p>
-                <%= l post_blog.created_at %>
+              <p class = "text-right">
+                <%= "#{l post_blog.created_at, format: :long}に投稿" %>
               </p>
             </div>
           </div>

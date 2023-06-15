@@ -1,22 +1,36 @@
-<h1>新規投稿</h1>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-8 offset-2">
+      <%= form_with model: @post_blog, url: post_blogs_path, method: :post do |f| %>
+        <div class = "row">
+          <label class = "col-3">投稿画像</label>
+          <div class = "col-9"><%= f.file_field :image, accept: "image/*", class: "form-control-file" %></div>
+        </div>
+        <div class = "row">
+          <label class = "col-3">タイトル</label>
+          <div class = "col-9"><%= f.text_field :title, class: "form-control"%></div>
+        </div>
+        <div class = "row">
+          <label class = "col-3">投稿内容</label>
+          <div class = "col-9"><%= f.text_area :blog, class: "form-control"%></div>
+        </div>
 
-<div class = "new_post">
-  <%= form_with model: @post_blog, url: post_blogs_path, method: :post do |f| %>
-    <h4>投稿画像</h4>
-      <%= f.file_field :image, accept: "image/*" %>
     <h4>タイトル</h4>
-      <%= f.text_field :title %>
+
     <h4>投稿内容</h4>
       <%= f.text_area :blog %>
-    <h4>タグ付け</h4>
+    <h4>#(※半角)をつけてタグ付け</h4>
     <p><%= f.text_field :name %></p>
     <h4>公開・下書き</h4>
       <!--mapで文字列を取り出す、送る値で変換　セレクト内を日本語化-->
       <%= f.select :status, PostBlog.statuses_i18n.map{|k, v| [v,k]} %>
     <%= f.submit '投稿' %>
   <% end %>
-</div>
 
 <div class = "draft">
   <%= link_to "下書き一覧", confirm_post_blogs_path %>
+</div>
+
+    </div>
+  </div>
 </div>
