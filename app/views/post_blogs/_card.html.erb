@@ -3,7 +3,7 @@
     <%= image_tag post_blog.get_image, class: "card-img-top" %>
     <div class="card-body">
       <div class = "row">
-        <div class = "col-2">
+        <div class = "col-4">
           <div class = "row mx-1">
             <%= link_to user_path(post_blog.user.id) do %>
               <%= image_tag post_blog.user.get_profile_image(50,50), class: "rounded-circle" %>
@@ -15,7 +15,7 @@
             <% end %>
           </div>
         </div>
-        <div class = "col-10">
+        <div class = "col-8">
           <h5 class = "card-title">
             <%= link_to post_blog_path(post_blog.id) do %>
               <%= post_blog.title %></p>
@@ -25,10 +25,9 @@
             <%= post_blog.blog %><%#= post_blog.tags.map(&:name).join('#') %>
             <% post_blog.tags.each do |tag| %>
               <%= link_to search_tag_post_blogs_path(tag_id: tag.id) do %>
-                <span class = "bg-secondary text-white rounded-pill m-1 p-1">
-                  #<%= tag.name %>
-                  <%= "(#{tag.post_blogs.published.count})" %>
-                </span>
+                <div class = "d-inline-flex bg-secondary rounded-pill m-1 p-1">
+                  <span class = "text-white">#<%= tag.name %><%= "(#{tag.post_blogs.published.count})" %></span>
+                </div>
               <% end %>
             <% end %>
           </p>

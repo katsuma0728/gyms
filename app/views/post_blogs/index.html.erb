@@ -13,10 +13,9 @@
     <div class = "col-3">
       <% @tag_list.each do |list| %>
         <%= link_to search_tag_post_blogs_path(tag_id: list.id) do %>
-          <span class = "bg-secondary text-white rounded-pill m-1 p-1">
-            #<%= list.name %>
-            <%= "(#{list.post_blogs.published.count})" %>
-          </span>
+          <div class = "d-inline-flex bg-secondary rounded-pill m-1 p-1">
+            <span class = "text-white">#<%= list.name %><%= "(#{list.post_blogs.published.count})" %></span>
+          </div>
         <% end %>
       <% end %>
     </div>

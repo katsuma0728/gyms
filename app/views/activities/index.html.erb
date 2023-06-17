@@ -1,20 +1,26 @@
 <div class = "container p-5">
   <div class = "row">
-    <div class = "col-8 offset-2">
-        <% if @activities.present? %>
-        <div class="ralert alert-light" role="alert">
-          <% @activities.each do |activity| %>
-            <span class = "mx-2"><%= image_tag activity.subject.user.get_profile_image(50,50), class: "rounded-circle" %></span>
-            <%= link_to read_activity_path(activity.id), method: :patch do %>
-              <span class = "mr-5"><%= activity.subject.name %>さんが<%= activity.action_type_i18n %>!</span>
-            <% end %>
-            <span class = "ml-5"><%= l activity.created_at, format: :long %></span>
+    <div class = "col-9 offset-2">
+      <% if @activities.present? %>
+        <% @activities.each do |activity| %>
+          <div class="row ralert alert-light p-2 mb-2" role="alert">
+            <div class = "col-1">
+              <%= image_tag activity.subject.user.get_profile_image(50,50), class: "rounded-circle" %>
+            </div>
+            <div class = "col-7">
+                <%= link_to read_activity_path(activity.id), method: :patch do %>
+                  <%= activity.subject.name %>さんが<%= activity.action_type_i18n %>!</span>
+                <% end %>
+            </div>
+            <div class = "col-4">
+              <p class = "text-right"><%= l activity.created_at, format: :long %></p>
+            </div>
+          </div>
           <%= paginate @activities %>
-          <% end %>
-        <% else %>
-          <h3>通知はありません。</h3>
         <% end %>
-       </div>
+      <% else %>
+        <h3>通知はありません。</h3>
+      <% end %>
     </div>
   </div>
 </div>
