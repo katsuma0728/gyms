@@ -15,7 +15,7 @@
                 <td><%= l schedule.start_time, format: :short %></td>
                 <td>
                   <%= link_to schedule_path(schedule.id) do %>
-                    <%= schedule.title %>
+                    <%= schedule.title.truncate(8) %>
                   <% end %>
                 </td>
               </tr>

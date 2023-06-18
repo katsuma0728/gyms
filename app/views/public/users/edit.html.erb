@@ -19,7 +19,7 @@
           <%= f.select :sex , User.sexes_i18n.keys.to_a, { include_blank: '選択してください'}, class: "form-control" %>
         </div>
         <div class = "mb-3">
-          <label>ひとこと！</label>
+          <label>目標</label>
           <%= f.text_area :introduction, class: "form-control" %>
         </div>
         <div class="mb-3">

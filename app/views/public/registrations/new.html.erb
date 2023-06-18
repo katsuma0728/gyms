@@ -1,53 +1,69 @@
-<h2>Sign up</h2>
-
-  <%= form_with model: @user, url: user_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class = "field">
-    <%= f.file_field :profile_image, accept: "profile_image/*" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
+      <h3 class="text-dark bg-light py-4 mb-0">新規ユーザー登録</h3>
+      <div class="form-body p-4">
+        <div class="mx-auto text-center mb-3">
+          <h5>項目を入力して新規登録！</h5>
+        </div>
+        <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+          <%= render "public/shared/error_messages", resource: resource %>
+          <div class = "row mb-3">
+            <label class = "col-5">プロフィール画像</label>
+            <div class = "col-7"><%= f.file_field :profile_image, accept: "profile_image/*", class: "form-control-file" %></div>
+          </div>
+          <div class="row mb-3">
+            <label class = "col-5">ユーザーネーム</label>
+            <div class = "col-7"><%= f.text_field :name, autocomplete: "off", autofocus: true, class: "form-control" %></div>
+          </div>
+          <div class = "row mb-3">
+            <label class = "col-5">生年月日</label>
+            <div class = "col-7">
+              <%= f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(2000, 1, 1) %>
+            </div>
+          </div>
+          <div class = "row mb-3">
+            <label class = "col-5">性別（任意です。）</label>
+            <div class = "col-7">
+              <%= f.select :sex, User.sexes.keys.to_a, { include_blank: '選択してください'} %>
+            </div>
+          </div>
+          <div class = "row mb-3">
+            <label class = "col-5">目標をたてよう！</label>
+            <div class = "col-7">
+              <%= f.text_area :introduction, autofocus: true, class: "form-control", placeholder: "夏までに－10キロ！など" %>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+            </div>
+            <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "form-control", id: "inputEmail", placeholder: "メールアドレス" %>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
+            </div>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control", id: "inputPassword", placeholder: "パスワード" %>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", id: "inputConfirmPassword", placeholder: "パスワード確認" %>
+          </div>
+          <div class = "row">
+            <div class = "col-6 offset-3 mt-2">
+              <%= f.submit "新規登録", class: "btn btn-block btn-info" %>
+            </div>
+          </div>
+        <% end %>
+        <div class = "row">
+          <div class = "col-6 offset-3 mt-2">
+            <%= link_to "ログインはこちらから",  new_user_session_path, class: "btn btn-block btn-secondary" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class = "field">
-    <%= f.label :birth_date %>
-    <%= f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) %>
-  </div>
-
-  <div class = "field">
-    <%= f.label :sex %>
-    <%= f.select :sex, User.sexes.keys.to_a, { include_blank: '選択してください'} %>
-  </div>
-
-  <div class = "field">
-    <%= f.label :introduction %><br>
-    <%= f.text_area :introduction %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>
