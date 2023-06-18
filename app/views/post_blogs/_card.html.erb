@@ -1,46 +1,65 @@
-<% post_blogs.each do |post_blog| %>
-  <div class="card w-50 mx-auto mt-4 shadow-lg">
-    <%= image_tag post_blog.get_image, class: "card-img-top" %>
-    <div class="card-body">
-      <div class = "row">
-        <div class = "col-4">
-          <div class = "row mx-1">
-            <%= link_to user_path(post_blog.user.id) do %>
-              <%= image_tag post_blog.user.get_profile_image(50,50), class: "rounded-circle" %>
-            <% end %>
-          </div>
-          <div class = "row mt-1 mx-2">
-            <%= link_to user_path(post_blog.user.id) do %>
-              <%= post_blog.user.name %>
-            <% end %>
-          </div>
-        </div>
-        <div class = "col-8">
-          <h5 class = "card-title">
-            <%= link_to post_blog_path(post_blog.id) do %>
-              <%= post_blog.title %></p>
-            <% end %>
-          </h5>
-          <p class = "card-text">
-            <%= post_blog.blog %><%#= post_blog.tags.map(&:name).join('#') %>
-            <% post_blog.tags.each do |tag| %>
-              <%= link_to search_tag_post_blogs_path(tag_id: tag.id) do %>
-                <div class = "d-inline-flex bg-secondary rounded-pill m-1 p-1">
-                  <span class = "text-white">#<%= tag.name %><%= "(#{tag.post_blogs.published.count})" %></span>
-                </div>
+<% if post_blogs.count != 0 %>
+  <% post_blogs.each do |post_blog| %>
+    <div class="card w-50 mx-auto mt-4 shadow-lg">
+      <%= image_tag post_blog.get_image, class: "card-img-top" %>
+      <div class="card-body">
+        <div class = "row">
+          <div class = "col-4">
+            <div class = "row mx-1">
+              <%= link_to user_path(post_blog.user.id) do %>
+                <%= image_tag post_blog.user.get_profile_image(50,50), class: "rounded-circle" %>
               <% end %>
-            <% end %>
-          </p>
-          <p class = "text-right">
-            <%= "#{post_blog.likes.count}♥" %>
-            <%= link_to "#{post_blog.post_comments.count} 件のコメント", post_blog_path(post_blog.id) %>
-          </p>
-          <p class = "text-right">
-            <%= "#{l post_blog.created_at, format: :long}に投稿" %>
-          </p>
+            </div>
+            <div class = "row mt-1 mx-2">
+              <%= link_to user_path(post_blog.user.id) do %>
+                <%= post_blog.user.name %>
+              <% end %>
+            </div>
+          </div>
+          <div class = "col-8">
+            <h5 class = "card-title">
+              <%= link_to post_blog_path(post_blog.id) do %>
+                <%= post_blog.title %></p>
+              <% end %>
+            </h5>
+            <p class = "card-text">
+              <%= post_blog.blog %><%#= post_blog.tags.map(&:name).join('#') %>
+              <% post_blog.tags.each do |tag| %>
+                <%# if tag.post_blogs.status == 1 %>
+                  <%= link_to search_tag_post_blogs_path(tag_id: tag.id) do %>
+                    <div class = "d-inline-flex bg-secondary rounded-pill m-1 p-1">
+                      <span class = "text-white">#<%= tag.name %><%= "(#{tag.post_blogs.published.count})" %></span>
+                    </div>
+                  <% end %>
+                <%# else %>
+                  <!--<div class = "d-inline-flex bg-secondary rounded-pill m-1 p-1">-->
+                  <!--  <span class = "text-white">#<%= tag.name %><%= "(#{tag.post_blogs.published.count})" %></span>-->
+                  <!--</div>-->
+                <%# end %>
+              <% end %>
+            </p>
+            <p class = "text-right">
+              <%= "#{post_blog.likes.count}♥" %>
+              <%= link_to "#{post_blog.post_comments.count} 件のコメント", post_blog_path(post_blog.id) %>
+            </p>
+            <p class = "text-right">
+              <%= "#{l post_blog.created_at, format: :long}に投稿" %>
+            </p>
+          </div>
         </div>
       </div>
     </div>
+  <% end %>
+<%else%>
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-6 offset-2">
+        <h5>今選んだタグでタグ付けされた投稿はありません！</h5>
+        <h5><i class="far fa-hand-point-left"></i>に出ているタグから検索してみよう！</h5>
+      </div>
+    </div>
   </div>
-<% end %>
-<%= paginate post_blogs %>
+<%end%>
+<div class = "pagination mt-5">
+  <%= paginate post_blogs %>
+</div>
