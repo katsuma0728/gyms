@@ -1,6 +1,13 @@
 <div class = "container">
   <div class="row mt-5">
      <div class="col-4 mt-5">
+       <% if @schedule.errors.any? %>
+        <ul>
+          <% @schedule.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
 	   <h5>トレーニングスケジュール</h5>
         <table class="table" style = "background-color: #FFFFFF;">
           <thead>
@@ -25,11 +32,11 @@
         <%= form_with model: @schedule, url: schedules_path, method: :post do |f| %>
           <div class="title mt-2">
             <div class="form-tag">種目</div>
-            <%= f.text_field :title %>
+            <%= f.text_field :title, class: "form-control" %>
           </div>
           <div class="content mt-2">
             <div class="form-tag">メモ</div>
-            <%= f.text_field :memo %>
+            <%= f.text_area :memo, class: "form-control" %>
           </div>
           <div class="time mt-2">
             <div class="form-tag">時間</div>

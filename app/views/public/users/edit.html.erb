@@ -1,6 +1,7 @@
 <div class = "container">
   <div class="row mt-5">
     <div class="col-6 offset-3">
+      <%= render "public/shared/error_messages", resource: @user %>
       <%= form_with model: @user, url: user_path, method: :patch do |f| %>
         <div class = "mb-3">
           <label>プロフィール画像</label>

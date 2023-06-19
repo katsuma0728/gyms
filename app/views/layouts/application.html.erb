@@ -23,24 +23,19 @@
           <div class = "collapse navbar-collapse" id = "navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in? %>
-                <li class="nav-item">
-                  <%= link_to new_post_blog_path do %>
-                    <i class="fas fa-file-plus fa-2x text-white"></i>
-                  <% end %>
-                </li>
-                <li class="nav-item">
+                <li class="nav-item mx-4">
                   <%= link_to post_blogs_path do %>
                     <i class="fas fa-home fa-2x text-white"></i>
                   <% end %>
                 </li>
-                <li>
+                <li class="nav-item mx-4">
                  <%= link_to destroy_admin_session_path, method: :delete do %>
                    <i class="fas fa-sign-out-alt fa-2x text-white"></i>
                  <% end %>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mx-4">
                   <%= link_to admin_users_path do %>
-                    <i class="fas fa-user fa-2x text-white"></i>
+                    <i class="fas fa-users fa-2x text-white"></i>
                   <% end %>
                 </li>
               <% elsif user_signed_in? %>

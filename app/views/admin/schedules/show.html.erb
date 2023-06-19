@@ -1,0 +1,20 @@
+<div class = "container">
+  <div class = "row mt-5">
+    <div class = "col-8 offset-3 mt-5">
+      <div class = "user_card" style = "width: 30rem;">
+        <div class = "card-header text-center" style = "background-color:#FFFFE0;">
+          <%= l @schedule.start_time, format: :long %>
+        </div>
+          <ul class = "list-group list-group-flush text-center">
+            <li class = "list-group-item"><%= @schedule.title %></li>
+            <li class = "list-group-item memo"><%= @schedule.memo %></li>
+            <li class = "list-group-item">
+              <%= link_to '編集', edit_admin_schedule_path(@schedule.id), class: "btn btn-success mx-3" %>
+              <%= link_to '消去',admin_schedule_path(@schedule.id), method: :delete, class: "btn btn-danger mx-3" %>
+              <%= link_to 'ユーザーページへ', admin_user_path(@schedule.user.id), class: "btn btn-primary" %>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>

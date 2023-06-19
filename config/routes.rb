@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   root to: 'homes#top'
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -22,14 +23,21 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
   end
 
+  namespace :admin do
+    resources :schedules, only: [:show, :edit, :update, :destroy]
+  end
+
+
   scope module: :public do
     resources :users, only: [:show, :edit, :update]
     get 'unsubscribe/:id' => 'users#unsubscribe', as: 'confirm_unsubscribe'
     patch 'withdraw/:id' => 'users#withdraw', as: 'withdraw_user'
   end
 
-  resources :schedules, only: [:index, :new, :show, :edit, :create, :update, :destroy]
-
+  scope module: :public do
+    resources :schedules, only: [:index, :new, :show, :edit, :create, :update, :destroy]
+  end
+  
   resources :post_blogs, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     get 'search', on: :collection
     get "search_tag", on: :collection

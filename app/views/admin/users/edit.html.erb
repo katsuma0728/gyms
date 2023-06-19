@@ -1,24 +1,47 @@
-<h2>管理者ユーザー編集画面</h2>
-
-<h5>ID</h5>
-<p><%= @user.id %></p>
-
-<%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
-  <h5>ユーザー名</h5>
-  <%= f.text_field :name %>
-
-  <h5>生年月日</h5>
-  <%= f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) %>
-
-  <h5>性別</h5>
-  <%= f.select :sex, User.sexes.keys.to_a, { include_blank: '選択してください'} %>
-
-  <h5>メールアドレス</h5>
-  <%= f.text_field :email %>
-
-  <h5>アカウントステータス</h5>
-  <%= f.radio_button :is_deleted, :true %><%= f.label :is_deleted, '停止' %>
-  <%= f.radio_button :is_deleted, :false %><%= f.label :is_deleted, '有効' %>
-
-  <%= f.submit "変更" %>
-<% end %>
+<div class = "container">
+  <div class="row mt-5">
+    <div class="col-6 offset-3">
+      <%= render "admin/shared/error_messages", resource: @user %>
+      <div class = "row">
+        <div class = "col-4">ユーザーID</div>
+        <div class = "col-4"><%= @user.id %></div>
+      </div>
+      <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
+        <div class = "mt-5 mb-3">
+          <label>プロフィール画像</label>
+          <%= f.file_field :profile_image, accept: "profile_image/*", class: "form-control-file" %>
+        </div>
+        <div class="mb-3">
+          <label>ユーザーネーム</label>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class = "mb-3">
+          <label>生年月日</label>
+          <%= f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1), class: "form-control" %>
+        </div>
+        <div class = "mb-3">
+          <label>性別</label>
+          <%= f.select :sex , User.sexes_i18n.keys.to_a, { include_blank: '選択してください'}, class: "form-control" %>
+        </div>
+        <div class = "mb-3">
+          <label>目標</label>
+          <%= f.text_area :introduction, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <label>メールアドレス</label>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <label>アカウントステータス</label>
+          <div>
+            <%= f.radio_button :is_deleted, :true %><%= f.label :is_deleted, '停止' %>
+            <%= f.radio_button :is_deleted, :false %><%= f.label :is_deleted, '有効' %>
+          </div>
+        </div>
+        <div class="mb-3">
+          <%= f.submit "保存", class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

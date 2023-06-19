@@ -11,6 +11,10 @@ class User < ApplicationRecord
   has_many :activities, dependent: :destroy
   has_many :schedules, dependent: :destroy
 
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :introduction, presence: true
+
   has_one_attached :profile_image
   enum sex: { 男性: 0, 女性: 1}
 

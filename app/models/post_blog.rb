@@ -10,6 +10,8 @@ class PostBlog < ApplicationRecord
   has_one_attached :image
   enum status: { published: 0, draft: 1 }
 
+  validates :title, presence: true
+  validates :blog, presence: true
 
   def self.search(keyword)
     #投稿タイトル、内容、ユーザーネームで検索
@@ -39,7 +41,7 @@ class PostBlog < ApplicationRecord
     # 古いタグを消す
     old_tags.each do |old|
       self.tags.delete Tag.find_by(name: old)
-      
+
       check_tag = Tag.find_by(name: old)
       if check_tag.post_blogs.count == 0
         check_tag.destroy

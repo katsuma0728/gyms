@@ -12,9 +12,12 @@ class PostBlogsController < ApplicationController
     @post_blog.user_id = current_user.id
     # 受け取った値を,で区切って配列にする
     tag_list = params[:post_blog][:name].split(',')
-    @post_blog.save
-    @post_blog.save_tag(tag_list)
-    redirect_to post_blogs_path
+    if  @post_blog.save
+        @post_blog.save_tag(tag_list)
+        redirect_to post_blogs_path
+    else
+      render :new
+    end
   end
 
   def search

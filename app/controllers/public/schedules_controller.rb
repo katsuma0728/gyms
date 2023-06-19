@@ -1,27 +1,28 @@
-class SchedulesController < ApplicationController
+class Public::SchedulesController < ApplicationController
 
-# カレンダーのカスタマイズ、日曜日を始まりに
-before_action :set_beginning_of_week
+  # カレンダーのカスタマイズ、日曜日を始まりに
+  before_action :set_beginning_of_week
 
 
   # ゲストユーザー管理
   # before_action :ensure_general_user, only: [:create]
 
   def index
+    @schedule = Schedule.new
     @user = current_user
     @schedules = @user.schedules.all
-    @schedule = Schedule.new
-  end
-
-  def new
-    @schedule = Schedule.new
   end
 
   def create
     @schedule = Schedule.new(schedule_params)
     @schedule.user_id = current_user.id
-    @schedule.save
-    redirect_to schedules_path
+    if @schedule.save
+       redirect_to schedules_path
+    else
+      @user = current_user
+      @schedules = @user.schedules.all
+      render :index
+    end
   end
 
   def show
@@ -34,8 +35,11 @@ before_action :set_beginning_of_week
 
   def update
     @schedule = Schedule.find(params[:id])
-    @schedule.update(schedule_params)
-    redirect_to schedules_path
+    if  @schedule.update(schedule_params)
+        redirect_to schedules_path
+    else
+      render :edit
+    end
   end
 
   def destroy

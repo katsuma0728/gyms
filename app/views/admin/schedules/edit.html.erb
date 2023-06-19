@@ -1,7 +1,14 @@
 <div class = "container p-5">
   <div class="row mt-5 p-5">
     <div class="col-6 offset-3">
-      <%= form_with model: @schedule, url: schedule_path, method: :patch do |f| %>
+      <% if @schedule.errors.any? %>
+        <ul>
+          <% @schedule.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= form_with model: @schedule, url: admin_schedule_path, method: :patch do |f| %>
         <div class = "mb-3">
           <label>種目</label>
           <%= f.text_field :title, class: "form-control" %>
