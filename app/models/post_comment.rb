@@ -5,6 +5,8 @@ class PostComment < ApplicationRecord
 
   has_one :activity, as: :subject, dependent: :destroy
 
+  validates :comment, presence: true
+
 # コメント作成後
   after_create_commit :create_activities
 

@@ -62,6 +62,13 @@
       </div>
       <div class = "row mt-5">
         <div class = "col-12">
+          <% if @error_comment.present? %>
+            <ul>
+              <% @error_comment.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
           <%= form_with model: [@post_blog, @post_comment] do |f| %>
             <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
             <%= f.submit "送信する", class: "btn btn-success" %>
