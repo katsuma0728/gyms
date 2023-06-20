@@ -29,7 +29,11 @@
           <label class = "col-3">公開・下書き保存</label>
           <!--mapで文字列を取り出す、送る値で変換　セレクト内を日本語化-->
           <div class = "col-3"> <%= f.select :status, PostBlog.statuses_i18n.map{|k, v| [v,k]}, class: "form-select" %></div>
-          <div class = "col-3"><%= link_to "下書き一覧", confirm_post_blogs_path, class: "btn btn-info" %></div>
+          <div class = "col-3">
+            <% if current_user.present? %>
+              <%= link_to "下書き一覧", confirm_post_blogs_path, class: "btn btn-info" %>
+            <% end %>
+          </div>
         </div>
         <div class = "row mt-3">
           <div class = "col-4 offset-3"><%= f.submit '更新', class: "btn btn-success" %></div>

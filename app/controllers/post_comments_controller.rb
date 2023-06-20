@@ -7,6 +7,7 @@ class PostCommentsController < ApplicationController
     if post_comment.save
        redirect_to post_blog_path(post_blog.id)
     else
+      #エラーメッセージ表示
       @error_comment = post_comment
       @post_blog = PostBlog.find(params[:post_blog_id])
       @post_comment = PostComment.new
