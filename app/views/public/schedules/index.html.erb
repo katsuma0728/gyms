@@ -2,12 +2,8 @@
   <div class="row mt-5">
      <div class="col-4 mt-5">
        <% if @schedule.errors.any? %>
-        <ul>
-          <% @schedule.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      <% end %>
+         <%= render 'error', schedule: @schedule %>
+       <% end %>
 	   <h5>トレーニングスケジュール</h5>
         <table class="table" style = "background-color: #FFFFFF;">
           <thead>

@@ -2,11 +2,7 @@
   <div class = "row">
     <div class = "col-8 offset-2">
       <% if @post_blog.errors.any? %>
-        <ul>
-          <% @post_blog.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+        <%= render 'error', post_blog: @post_blog %>
       <% end %>
       <%= form_with model: @post_blog, url: post_blogs_path, method: :post do |f| %>
         <div class = "row mt-5">

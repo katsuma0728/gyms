@@ -1,6 +1,6 @@
 <div class = "container">
   <div class = "row mt-5">
-    <div class = "col-7">
+    <div class = "col-8 offset-2">
       <div class="card mx-auto mt-4 shadow-lg">
         <%= image_tag @post_blog.get_image, class: "card-img-top" %>
         <div class="card-body">
@@ -56,19 +56,13 @@
               <p class = "text-right">
                 <!--ログイン中のユーザーのみいいね-->
                 <% if current_user.present? %>
-                  <% if @post_blog.liked_by?(current_user) %>
-                    <%= link_to post_blog_likes_path(@post_blog), method: :delete do %>
-                      <%= @post_blog.likes.count %><i class="fas fa-thumbs-up mx-1"></i>
-                    <% end %>
-                  <% else %>
-                    <%= link_to post_blog_likes_path(@post_blog), method: :post do %>
-                      <%= @post_blog.likes.count %><i class="far fa-thumbs-up mx-1"></i>
-                    <% end %>
-                  <% end %>
+                  <span id = "like_buttons_<%= @post_blog.id %>">
+                    <%= render 'likes/like', post_blog: @post_blog %>
+                  </span>
                 <% else %>
                   <%= @post_blog.likes.count %><i class="fas fa-thumbs-up mx-1"></i>
                 <% end %>
-                <%= "#{@post_blog.post_comments.count}件のコメント" %>
+                <span id = "comment_count"><%= "#{@post_blog.post_comments.count}件のコメント" %></span>
               </p>
               <p class = "text-right">
                 <%= "#{l @post_blog.created_at, format: :long}に投稿" %>
@@ -77,47 +71,27 @@
           </div>
         </div>
       </div>
+      <div class = "row mt-2">
+        <div class = "col-12">
+          <span id = "comments_area">
+            <%= render 'post_comments/comment', post_blog: @post_blog %>
+          </span>
+        </div>
+      </div>
       <div class = "row mt-5">
         <div class = "col-12">
-          <!--エラーメッセージ表示-->
-          <% if @error_comment.present? %>
-            <ul>
-              <% @error_comment.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          <% end %>
+          <!--エラーメッセージ表示、非同期通信によりrenderから読み込み-->
+          <span id = "error_comment">
+            <%= render 'post_comments/error', error_comment: @error_comment %>
+          </span>
+          <!--エラーメッセージ表示、非同期通信によりrenderから読み込み-->
           <% if current_user.present? %>
-            <%= form_with model: [@post_blog, @post_comment] do |f| %>
-              <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
-              <%= f.submit "送信する", class: "btn btn-success" %>
-            <% end %>
+            <span id = "comment_form">
+              <%= render 'post_comments/form', post_blog: @post_blog, post_comment: @post_comment %>
+            </span>
           <% end %>
         </div>
       </div>
-    </div>
-    <div class = "col-5">
-      <% @post_blog.post_comments.each do |post_comment| %>
-        <div class = "row ralert alert-light p-1 mb-2" role = "alert">
-          <div class = "col-4">
-            <div class = "row">
-              <%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle" %>
-            </div>
-            <div class = "row mt-1">
-              <%= post_comment.user.name %>
-            </div>
-          </div>
-          <div class = "col-8">
-            <p><%= post_comment.comment %></p>
-            <p class = "text-right">
-              <%= l post_comment.created_at %>
-              <% if (current_user.present? && post_comment.user.id == current_user.id) || (current_admin.present? && current_admin.email == 'admin@example.com') %>
-                <%= link_to "削除", post_blog_post_comment_path(post_comment.post_blog, post_comment), method: :delete, class: "bg-danger text-white rounded-pill m-1 p-1" %>
-              <% end %>
-            </p>
-          </div>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>

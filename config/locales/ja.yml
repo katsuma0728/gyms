@@ -28,3 +28,23 @@ ja:
     previous: "前月"
     next: "次月"
     week: "週"
+
+#------エラーメッセージの日本語翻訳------------
+  activerecord:
+    models:
+      user: ユーザー
+      post_blog: 投稿
+      schedule: スケジュール
+      post_comment: コメント
+    attributes:
+       user:
+         name: ユーザーネーム
+         introduction: 目標
+         email: メールアドレス
+       post_blog:
+         title: タイトル
+         blog: 投稿内容
+       schedule:
+         title: 種目
+       post_comment:
+         comment: コメント

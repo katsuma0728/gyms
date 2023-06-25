@@ -1,0 +1,4 @@
+$("#comments_area").html("<%= j(render 'post_comments/comment', post_blog: @post_blog) %>")
+$("#comment_count").html("<%= "#{@post_blog.post_comments.count}件のコメント" %>")
+//エラーメッセージをなくす
+$("#error_comment").html("<%= j(render 'post_comments/error', error_comment: @error_comment) %>")

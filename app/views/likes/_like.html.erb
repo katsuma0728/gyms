@@ -1,0 +1,9 @@
+<% if post_blog.liked_by?(current_user) %>
+  <%= link_to post_blog_likes_path(post_blog), method: :delete, remote: true do %>
+    <%= post_blog.likes.count %><i class="fas fa-thumbs-up mx-1"></i>
+  <% end %>
+<% else %>
+  <%= link_to post_blog_likes_path(post_blog), method: :post, remote: true  do %>
+    <%= post_blog.likes.count %><i class="far fa-thumbs-up mx-1"></i>
+  <% end %>
+<% end %>

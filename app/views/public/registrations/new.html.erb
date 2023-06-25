@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-7 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
+    <div class="col-md-8 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
       <h3 class="text-dark bg-light py-4 mb-0">新規ユーザー登録</h3>
       <div class="form-body p-4">
         <div class="mx-auto text-center mb-3">
@@ -34,19 +34,19 @@
               <%= f.text_area :introduction, autofocus: true, class: "form-control", placeholder: "夏までに－10キロ！など" %>
             </div>
           </div>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 mx-5 col-8">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
             </div>
             <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "form-control", id: "inputEmail", placeholder: "メールアドレス" %>
           </div>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 mx-5 col-8">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
             </div>
             <%= f.password_field :password, autocomplete: "off", class: "form-control", id: "inputPassword", placeholder: "パスワード" %>
           </div>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 mx-5 col-8">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
             </div>

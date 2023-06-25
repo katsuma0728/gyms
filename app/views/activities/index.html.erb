@@ -19,7 +19,9 @@
           <%= paginate @activities %>
         <% end %>
       <% else %>
-        <h3>通知はありません。</h3>
+        <div class="alert alert-danger" role="alert">
+          <h3>通知はありません。</h3>
+        </div>
       <% end %>
     </div>
   </div>

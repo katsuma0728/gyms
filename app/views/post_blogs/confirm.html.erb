@@ -4,7 +4,9 @@
       <% if @post_blogs.present? %>
         <%= render 'card', post_blogs: @post_blogs %>
       <% else %>
+      <div class="alert alert-danger" role="alert">
         <h3>下書きはありません。</h3>
+      </div>
       <% end %>
     </div>
   </div>

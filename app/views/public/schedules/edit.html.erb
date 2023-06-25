@@ -2,11 +2,7 @@
   <div class="row mt-5 p-5">
     <div class="col-6 offset-3">
       <% if @schedule.errors.any? %>
-        <ul>
-          <% @schedule.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+        <%= render 'error', schedule: @schedule %>
       <% end %>
       <%= form_with model: @schedule, url: schedule_path, method: :patch do |f| %>
         <div class = "mb-3">

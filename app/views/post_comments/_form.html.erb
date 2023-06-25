@@ -1,0 +1,5 @@
+<!--form_withではremote: trueは相性が悪いので使えない-->
+<%= form_with model: [post_blog, post_comment], local: false do |f| %>
+  <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
+  <%= f.submit "送信する", class: "btn btn-success" %>
+<% end %>
