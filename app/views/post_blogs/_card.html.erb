@@ -1,7 +1,7 @@
 <% if post_blogs.count != 0 %>
   <% post_blogs.each do |post_blog| %>
     <div class="card w-50 mx-auto mt-4 shadow-lg">
-      <%= image_tag post_blog.get_image, class: "card-img-top" %>
+      <%= image_tag post_blog.get_image(200,200), class: "card-img-top" %>
       <div class="card-body">
         <div class = "row">
           <div class = "col-4">
@@ -10,10 +10,12 @@
                 <%= link_to user_path(post_blog.user.id) do %>
                   <%= image_tag post_blog.user.get_profile_image(50,50), class: "rounded-circle" %>
                 <% end %>
-              <% else %>
+              <% elsif current_admin.present? %>
                   <%= link_to admin_user_path(post_blog.user.id) do %>
                     <%= image_tag post_blog.user.get_profile_image(50,50), class: "rounded-circle" %>
                   <% end %>
+              <% else %>
+                  <%= image_tag post_blog.user.get_profile_image(50,50), class: "rounded-circle" %>
               <% end %>
             </div>
             <div class = "row mt-1 mx-2">
@@ -21,10 +23,12 @@
                 <%= link_to user_path(post_blog.user.id) do %>
                   <%= post_blog.user.name %>
                 <% end %>
-              <% else %>
+              <% elsif current_admin.present? %>
                   <%= link_to admin_user_path(post_blog.user.id) do %>
                     <%= post_blog.user.name %>
                   <% end %>
+              <% else %>
+                 <%= post_blog.user.name %>
               <% end %>
             </div>
           </div>

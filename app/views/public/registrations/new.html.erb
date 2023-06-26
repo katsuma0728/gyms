@@ -32,25 +32,27 @@
             <label class = "col-5">目標をたてよう！</label>
             <div class = "col-7">
               <%= f.text_area :introduction, autofocus: true, class: "form-control", placeholder: "夏までに－10キロ！など" %>
+              <div class = "row mt-3">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+                  </div>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "form-control", id: "inputEmail", placeholder: "メールアドレス" %>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
+                  </div>
+                  <%= f.password_field :password, autocomplete: "off", class: "form-control", id: "inputPassword", placeholder: "パスワード" %>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+                  </div>
+                  <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", id: "inputConfirmPassword", placeholder: "パスワード確認" %>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="input-group mb-3 mx-5 col-8">
-            <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
-            </div>
-            <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "form-control", id: "inputEmail", placeholder: "メールアドレス" %>
-          </div>
-          <div class="input-group mb-3 mx-5 col-8">
-            <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
-            </div>
-            <%= f.password_field :password, autocomplete: "off", class: "form-control", id: "inputPassword", placeholder: "パスワード" %>
-          </div>
-          <div class="input-group mb-3 mx-5 col-8">
-            <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
-            </div>
-            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", id: "inputConfirmPassword", placeholder: "パスワード確認" %>
           </div>
           <div class = "row">
             <div class = "col-6 offset-3 mt-2">
