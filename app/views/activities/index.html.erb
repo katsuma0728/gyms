@@ -9,7 +9,7 @@
             </div>
             <div class = "col-7">
                 <%= link_to read_activity_path(activity.id), method: :patch do %>
-                  <%= activity.subject.name %>さんが<%= activity.action_type_i18n %>!</span>
+                  <%= activity.subject.name %>さんがあなたの<%= activity.action_type_i18n %>!</span>
                 <% end %>
             </div>
             <div class = "col-4">

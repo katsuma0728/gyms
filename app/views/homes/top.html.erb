@@ -13,31 +13,21 @@
     <div class = "row mt-5">
     <% if admin_signed_in? %>
       <div class = "col-4">
-        <%= link_to admin_users_path do %>
-          <button class="btn btn-secondary btn btn-block text-white" type="button">ユーザー管理へ</button>
-        <% end %>
+        <%= link_to "ユーザー管理", admin_users_path, class: "btn btn-secondary btn btn-block text-white" %>
       </div>
     <% elsif user_signed_in? %>
       <div class = "col-4">
-        <%= link_to new_post_blog_path do %>
-          <button class="btn btn-secondary btn btn-block" type="button">投稿してみよう！</button>
-        <% end %>
+        <%= link_to "投稿してみよう！", new_post_blog_path, class: "btn btn-secondary btn btn-block" %>
       </div>
     <% else %>
       <div class = "col-4">
-        <%= link_to new_user_registration_path do %>
-          <button class="btn btn-secondary btn btn-block" type="button">新規登録</button>
-        <% end %>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary btn btn-block" %>
       </div>
       <div class = "col-4">
-        <%= link_to new_user_session_path do %>
-          <button class="btn btn-secondary btn btn-block" type="button">ログイン</button>
-        <% end %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary btn btn-block" %>
       </div>
       <div class = "col-4">
-        <%= link_to users_guest_sign_in_path, method: :post do %>
-           <button class="btn btn-secondary btn btn-block" type="button">ゲストログイン</button>
-        <% end %>
+        <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-secondary btn btn-block" %>
       </div>
     <% end %>
   </div>
