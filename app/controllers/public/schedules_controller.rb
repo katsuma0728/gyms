@@ -1,9 +1,7 @@
 class Public::SchedulesController < ApplicationController
-
+  
   # カレンダーのカスタマイズ、日曜日を始まりに
   before_action :set_beginning_of_week
-
-
   # ゲストユーザー管理
   # before_action :ensure_general_user, only: [:create]
 

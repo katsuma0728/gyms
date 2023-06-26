@@ -1,4 +1,6 @@
 class PostCommentsController < ApplicationController
+  skip_before_action :authenticate_user!
+  # before_action :is_matching_login_user!
 
   def create
     @post_blog = PostBlog.find(params[:post_blog_id])
@@ -32,5 +34,14 @@ class PostCommentsController < ApplicationController
   def post_comment_params
     params.require(:post_comment).permit(:comment)
   end
+
+  # def is_matching_login_user
+  #   if user_signed_in?
+  #   elsif current_admin.present?
+  #     current_admin.email == 'admin@example.com'
+  #   else
+  #     redirect_to root_path
+  #   end
+  # end
 
 end

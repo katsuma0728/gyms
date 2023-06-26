@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Admin::PasswordsController < Devise::PasswordsController
+  skip_before_action :authenticate_user!
+  before_action :authenticate_admin!
+  
   # GET /resource/password/new
   # def new
   #   super

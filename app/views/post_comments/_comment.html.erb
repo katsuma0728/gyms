@@ -1,14 +1,14 @@
 <% post_blog.post_comments.each do |post_comment| %>
   <div class = "row ralert alert-light p-1 mb-2" role = "alert">
-    <div class = "col-1">
-      <div class = "row">
+    <div class = "col-2">
+      <div class = "row ml-1">
         <%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle" %>
       </div>
       <div class = "row mt-1">
         <%= post_comment.user.name %>
       </div>
     </div>
-    <div class = "col-11">
+    <div class = "col-10">
       <p><%= post_comment.comment %></p>
       <p class = "text-right">
         <%= l post_comment.created_at %>

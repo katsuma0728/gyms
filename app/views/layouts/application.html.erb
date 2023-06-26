@@ -24,45 +24,45 @@
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in? %>
                 <li class="nav-item mx-4">
-                  <%= link_to post_blogs_path do %>
-                    <i class="fas fa-home fa-2x text-white"></i>
+                  <%= link_to post_blogs_path, class: "edit_link" do %>
+                    <i class="fas fa-home mr-1"></i>Blogs
                   <% end %>
                 </li>
                 <li class="nav-item mx-4">
-                 <%= link_to destroy_admin_session_path, method: :delete do %>
-                   <i class="fas fa-sign-out-alt fa-2x text-white"></i>
+                 <%= link_to destroy_admin_session_path, method: :delete, class: "edit_link" do %>
+                   <i class="fas fa-sign-out-alt mr-1"></i>Log out
                  <% end %>
                 </li>
                 <li class="nav-item mx-4">
-                  <%= link_to admin_users_path do %>
-                    <i class="fas fa-users fa-2x text-white"></i>
+                  <%= link_to admin_users_path, class: "edit_link" do %>
+                    <i class="fas fa-users mr-1"></i>Users
                   <% end %>
                 </li>
               <% elsif user_signed_in? %>
                 <li class="nav-item mx-4">
-                  <%= link_to new_post_blog_path do %>
-                    <i class="far fa-file-alt fa-2x text-white"></i>
+                  <%= link_to new_post_blog_path, class: "edit_link" do %>
+                    <i class="far fa-file-alt mr-1"></i>Post
                   <% end %>
                 </li>
                 <li class="nav-item mx-4">
-                  <%= link_to post_blogs_path do %>
-                    <i class="fas fa-home fa-2x text-white"></i>
+                  <%= link_to post_blogs_path, class: "edit_link" do %>
+                    <i class="fas fa-home mr-1"></i>Blogs
                   <% end %>
                 </li>
                 <li class="nav-item mx-4">
-                  <%= link_to activities_path do %>
-                    <i class="fas fa-bell fa-2x text-white"></i>
+                  <%= link_to activities_path, class: "edit_link" do %>
+                    <i class="fas fa-bell mr-1"></i>Notice
                   <% end %>
                 </li>
                 <li class="nav-item mx-4">
-                  <%= link_to user_path(current_user.id) do %>
-                    <i class="fas fa-user fa-2x text-white"></i>
+                  <%= link_to user_path(current_user.id), class: "edit_link" do %>
+                    <i class="fas fa-user mr-1"></i>My page
                   <% end %>
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <%= link_to post_blogs_path do %>
-                    <i class= "fas fa-home fa-2x text-white"></i>
+                  <%= link_to post_blogs_path, class: "edit_link" do %>
+                    <i class= "fas fa-home mr-1"></i>Blogs
                   <% end %>
                 </li>
               <% end %>

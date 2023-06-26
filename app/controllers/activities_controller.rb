@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-
+  
 
   def index
     #作成日が新しい順で表示。

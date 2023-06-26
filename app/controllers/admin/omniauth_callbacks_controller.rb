@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Admin::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  skip_before_action :authenticate_user!
+  before_action :authenticate_admin!
+  
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
 

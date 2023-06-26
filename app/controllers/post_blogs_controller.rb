@@ -1,5 +1,6 @@
 class PostBlogsController < ApplicationController
-
+  skip_before_action :authenticate_user!
+  before_action :is_matching_login_user, except: [:index]
   # ゲストユーザー管理
   # before_action :ensure_general_user, only: [:create]
 
@@ -103,6 +104,16 @@ class PostBlogsController < ApplicationController
 
   def post_blog_params
     params.require(:post_blog).permit(:image, :title, :blog, :status, :user_id, :tag_id, :post_tag_id, :name)
+  end
+
+  # ログインユーザーと管理者以外はトップページへ
+  def is_matching_login_user
+    if user_signed_in?
+    elsif current_admin.present?
+       current_admin.email == 'admin@example.com'
+    else
+      redirect_to root_path
+    end
   end
 
 end
