@@ -29,14 +29,14 @@
                 <% end %>
               </div>
             </div>
-            <div class = "col-8">
+            <div class = "col-8 icon">
               <h5 class = "card-title">
                 <%= @post_blog.title %>
               </h5>
               <p class = "card-text">
                 <%= @post_blog.blog %>
                 <% @post_tags.each do |tag| %>
-                  <%= link_to search_tag_post_blogs_path(tag_id: tag.id) do %>
+                  <%= link_to search_tag_post_blogs_path(tag_id: tag.id), class: "link_edit" do %>
                     <span class = "bg-secondary text-white rounded-pill m-1 p-1">
                       #<%= tag.name %><%= "(#{tag.post_blogs.count})" %>
                     </span>

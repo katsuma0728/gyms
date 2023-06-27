@@ -32,7 +32,7 @@
               <% end %>
             </div>
           </div>
-          <div class = "col-8">
+          <div class = "col-8 icon">
             <h5 class = "card-title">
               <% if post_blog.published? %>
                 <%= link_to post_blog_path(post_blog.id) do %>
@@ -45,19 +45,13 @@
               <% end %>
             </h5>
             <p class = "card-text">
-              <%= post_blog.blog %><%#= post_blog.tags.map(&:name).join('#') %>
+              <%= post_blog.blog %>
               <% post_blog.tags.each do |tag| %>
-                <%# if tag.post_blogs.status == 1 %>
-                  <%= link_to search_tag_post_blogs_path(tag_id: tag.id) do %>
-                    <div class = "d-inline-flex bg-secondary rounded-pill m-1 p-1">
-                      <span class = "text-white">#<%= tag.name %><%= "(#{tag.post_blogs.published.count})" %></span>
-                    </div>
-                  <% end %>
-                <%# else %>
-                  <!--<div class = "d-inline-flex bg-secondary rounded-pill m-1 p-1">-->
-                  <!--  <span class = "text-white">#<%= tag.name %><%= "(#{tag.post_blogs.published.count})" %></span>-->
-                  <!--</div>-->
-                <%# end %>
+                <%= link_to search_tag_post_blogs_path(tag_id: tag.id), class: "link_edit" do %>
+                  <div class = "d-inline-flex bg-secondary rounded-pill m-1 p-1">
+                    <span class = "text-white">#<%= tag.name %><%= "(#{tag.post_blogs.published.count})" %></span>
+                  </div>
+                <% end %>
               <% end %>
             </p>
             <p class = "text-right">
@@ -82,7 +76,7 @@
 <%else%>
   <div class = "container">
     <div class = "row">
-      <div class = "col-6 offset-4">
+      <div class = "col-6 offset-4 alert alert-warning", role="alert">
         <h5>投稿はありません！</h5>
         <% if current_user.present? %>
           <h5><i class = "far fa-file-alt fa-2x mx-2"></i>から投稿してみよう！</h5>
@@ -91,7 +85,9 @@
             <h5>ユーザー管理へ</h5>
           <% end %>
         <% else %>
-          <h5>新規登録またはログインして投稿しよう！</h5>
+          <%= link_to root_path do %>
+            <h5>新規登録またはログインして投稿しよう！</h5>
+          <% end %>
         <% end %>
       </div>
     </div>
