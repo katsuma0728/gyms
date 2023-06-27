@@ -1,17 +1,19 @@
 <% post_blog.post_comments.each do |post_comment| %>
   <div class = "row ralert alert-light p-1 mb-2" role = "alert">
     <div class = "col-2">
-      <div class = "row ml-1">
+      <div class = "text-center mt-1">
         <%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle" %>
       </div>
-      <div class = "row mt-1">
-        <%= post_comment.user.name %>
+      <div class = "text-center mt-1" style="font-size: 0.8em;">
+        <%= link_to user_path(post_comment.user.id) do %>
+          <%= post_comment.user.name %>
+        <% end %>
       </div>
     </div>
     <div class = "col-10">
       <p><%= post_comment.comment %></p>
-      <p class = "text-right">
-        <%= l post_comment.created_at %>
+      <p class = "text-right" style="font-size: 0.8em;">
+        <%= l post_comment.created_at, format: :long %>
         <% if (current_user.present? && post_comment.user.id == current_user.id) || (current_admin.present? && current_admin.email == 'admin@example.com') %>
           <%= link_to "削除", post_blog_post_comment_path(post_comment.post_blog, post_comment), method: :delete, remote: true, class: "bg-danger text-white rounded-pill m-1 p-1" %>
         <% end %>

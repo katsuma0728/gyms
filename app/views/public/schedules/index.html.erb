@@ -1,12 +1,12 @@
 <div class = "container">
   <div class="row mt-5">
-     <div class="col-4 mt-5">
+     <div class="col-md-4 mt-5">
        <% if @schedule.errors.any? %>
          <%= render 'error', schedule: @schedule %>
        <% end %>
-	   <h5>トレーニングスケジュール</h5>
-        <table class="table" style = "background-color: #FFFFFF;">
-          <thead>
+	     <h5>トレーニングスケジュール</h5>
+       <table class="table" style = "background-color: #FFFFFF;">
+         <thead>
             <tr>
               <th>日程</th>
               <th>種目</th>
@@ -43,19 +43,9 @@
           </div>
         <% end %>
     </div>
-    <div class="col-8 mt-5">
-      <%= month_calendar events: @schedules do |date, schedules| %>
-        <%= date.day %>
-
-        <% schedules.each do |schedule| %>
-          <div>
-            <%= link_to schedule_path(schedule.id) do %>
-            <!--truncate文字数制限-->
-              <%= schedule.title.truncate(8) %>
-            <% end %>
-          </div>
-        <% end %>
-      <% end %>
+    <div class="col-md-8 mt-5">
+      <%= render 'calendar', schedules: @schedules %>
+      <%= paginate @schedules %>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 class Public::SchedulesController < ApplicationController
-  
+
   # カレンダーのカスタマイズ、日曜日を始まりに
   before_action :set_beginning_of_week
   # ゲストユーザー管理
@@ -8,7 +8,9 @@ class Public::SchedulesController < ApplicationController
   def index
     @schedule = Schedule.new
     @user = current_user
-    @schedules = @user.schedules.all
+    schedules = @user.schedules.page(params[:page]).per(10)
+    # 日付順に表示
+    @schedules = schedules.order(start_time: :asc)
   end
 
   def create

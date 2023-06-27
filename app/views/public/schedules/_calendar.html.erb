@@ -1,0 +1,22 @@
+<%= month_calendar events: schedules do |date, schedules| %>
+  <%= date.day %>
+  <!--each_with_index = each一つ一つに番号を付ける 0,1,2…の順で続いていく-->
+  <% schedules.each_with_index do |schedule, index| %>
+    <!--３以上で＋アイコンで表示-->
+    <% if index > 2 %>
+      <div class="text-right">
+        <i class="fas fa-plus-circle" style="color: red; font-size: 1.5em;"></i>
+        <!--<i class="far fa-plus-square" style="color: red;"></i>-->
+      </div>
+      <!--eachから抜ける-->
+      <% break %>
+    <% else %>
+      <div style="font-size: 0.8em;">
+        <%= link_to schedule_path(schedule.id) do %>
+          <!--truncate文字数制限-->
+          <%= schedule.title.truncate(8) %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

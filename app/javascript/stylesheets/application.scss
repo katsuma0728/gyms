@@ -54,6 +54,11 @@ ul {
   width: 10%;
 }
 
+//過去日付は色を変える
+.past {
+  background-color: #D3D3D3;
+}
+
 .user_card {
     height: 500px;
 }
@@ -72,10 +77,6 @@ ul {
     .edit_link {
         color: #FFFFFF;
 }
-}
-
-.field_with_errors {
-  display: contents;
 }
 
 .icon {
