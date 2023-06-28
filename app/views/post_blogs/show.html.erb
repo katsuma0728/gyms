@@ -44,12 +44,12 @@
                 <% end %>
               </p>
               <% if (current_user.present? && @post_blog.user.id == current_user.id) || (current_admin.present? && current_admin.email == 'admin@example.com') %>
-                <p class = "text-right">
-                  <%= link_to edit_post_blog_path(@post_blog.id) do %>
-                    <i class="fas fa-edit fa-lg"></i>
+                <p class = "text-right icon">
+                  <%= link_to edit_post_blog_path(@post_blog.id), class: "link_edit" do %>
+                    <i class="fas fa-edit"></i>
                   <% end %>
-                  <%= link_to post_blog_path(@post_blog.id), method: :delete do %>
-                    <i class="fas fa-trash-alt fa-lg"></i>
+                  <%= link_to post_blog_path(@post_blog.id), method: :delete, class: "link_edit" do %>
+                    <i class="fas fa-trash-alt"></i>
                   <% end %>
                 </p>
               <% end %>

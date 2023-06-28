@@ -15,6 +15,11 @@ class PostBlogsController < ApplicationController
     tag_list = params[:post_blog][:name].split(',')
     if  @post_blog.save
         @post_blog.save_tag(tag_list)
+        if params[:post_blog][:status] == "published"
+          flash[:notice] = "新規投稿しました"
+        else
+          flash[:notice] = "下書きに保存しました"
+        end
         redirect_to post_blogs_path
     else
       render :new
@@ -76,9 +81,11 @@ class PostBlogsController < ApplicationController
        @post_blog.save_tag(tag_list)
         #公開なら
         if params[:post_blog][:status] == "published"
-          redirect_to post_blog_path(@post_blog.id)
-        else
+          flash[:notice] = "新規投稿しました"
           redirect_to post_blogs_path
+        else
+          flash[:notice] = "下書きを更新しました"
+          redirect_to confirm_post_blogs_path
         end
     else
       render :edit
@@ -90,6 +97,11 @@ class PostBlogsController < ApplicationController
     # 配列を送るために空をつくる
     @post_blog.save_tag([])
     @post_blog.destroy
+    # if params[:post_blog][:status] == "published"
+    #   flash[:notice] = "投稿を削除しました"
+    # else
+    #   flash[:notice] = "下書きを削除しました"
+    # end
     redirect_to post_blogs_path
   end
 
