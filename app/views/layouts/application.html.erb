@@ -72,11 +72,13 @@
       </nav>
     </header>
     <main class="flex-fill background <%= (controller_name == 'homes' && action_name == 'top') ? 'top_background' : '' %> <%= (controller_name == 'users' && action_name == 'unsubscribe') ? 'unsubscribe_background' : '' %>">
-      <!--<div class = "background">-->
-        <%= yield %>
-      <!--</div>-->
+      <!--フラッシュメッセージの表示-->
+      <% flash.each do |message_type, message| %>
+　　    <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+
+      <%= yield %>
     </main>
-    <!--<footer class="fixed-bottom text-center text-white" style="background-color: #808080">-->
     <footer class="text-center text-white" style="background-color: #808080">
       <div class="container pt-4">
          <!--Section: Social media -->

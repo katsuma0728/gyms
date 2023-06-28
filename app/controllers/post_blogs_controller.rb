@@ -81,7 +81,7 @@ class PostBlogsController < ApplicationController
        @post_blog.save_tag(tag_list)
         #公開なら
         if params[:post_blog][:status] == "published"
-          flash[:notice] = "新規投稿しました"
+          flash[:notice] = "投稿を更新しました"
           redirect_to post_blogs_path
         else
           flash[:notice] = "下書きを更新しました"
@@ -96,13 +96,16 @@ class PostBlogsController < ApplicationController
     @post_blog = PostBlog.find(params[:id])
     # 配列を送るために空をつくる
     @post_blog.save_tag([])
-    @post_blog.destroy
-    # if params[:post_blog][:status] == "published"
-    #   flash[:notice] = "投稿を削除しました"
-    # else
-    #   flash[:notice] = "下書きを削除しました"
-    # end
-    redirect_to post_blogs_path
+    # モデルからのデータ取得
+    if @post_blog.status == "published"
+      flash[:notice] = "投稿を削除しました"
+      @post_blog.destroy
+      redirect_to post_blogs_path
+    else
+      flash[:notice] = "下書きを削除しました"
+      @post_blog.destroy
+      redirect_to confirm_post_blogs_path
+    end
   end
 
   # ゲストユーザー管理

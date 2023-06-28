@@ -17,10 +17,13 @@ class Public::SchedulesController < ApplicationController
     @schedule = Schedule.new(schedule_params)
     @schedule.user_id = current_user.id
     if @schedule.save
+       flash[:notice] = "カレンダーに新規登録しました"
        redirect_to schedules_path
     else
       @user = current_user
-      @schedules = @user.schedules.all
+      schedules = @user.schedules.page(params[:page]).per(10)
+      # 日付順に表示
+      @schedules = schedules.order(start_time: :asc)
       render :index
     end
   end
@@ -36,6 +39,7 @@ class Public::SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     if  @schedule.update(schedule_params)
+        flash[:notice] = "カレンダーを更新しました"
         redirect_to schedules_path
     else
       render :edit
@@ -45,6 +49,7 @@ class Public::SchedulesController < ApplicationController
   def destroy
     @schedule = Schedule.find(params[:id])
     @schedule.destroy
+    flash[:notice] = "削除しました"
     redirect_to schedules_path
   end
 

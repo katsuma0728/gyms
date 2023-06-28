@@ -1,6 +1,6 @@
 <div class = "container">
   <div class = "row p-2 mt-5">
-    <div class = "col-4 mt-5">
+    <div class = "col-4 mt-5 text-align-center">
       <%= image_tag @user.get_profile_image(250,250), class: "rounded-circle" %>
       <div class = "icon mt-3">
         <% if (current_user.present? && @user.id == current_user.id) || (current_admin.present? && current_admin.email == 'admin@example.com') %>
@@ -21,7 +21,7 @@
         </ul>
       </div>
     </div>
-    <div class = "col-8 mt-5">
+    <div class = "col-8 text-align-center mt-5">
       <%= render 'public/schedules/calendar', schedules: @schedules %>
     </div>
   </div>

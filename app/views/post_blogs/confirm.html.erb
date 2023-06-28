@@ -1,13 +1,11 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-11 offset-1 mt-1">
-      <%= flash[:notice] %>
+    <div class = "col-12 mt-3">
+      <h5>下書き一覧</h5>
       <% if @post_blogs.present? %>
         <%= render 'card', post_blogs: @post_blogs %>
       <% else %>
-      <div class="alert alert-danger" role="alert">
-        <h3>下書きはありません。</h3>
-      </div>
+        <p>下書きはありません。</p>
       <% end %>
     </div>
   </div>
