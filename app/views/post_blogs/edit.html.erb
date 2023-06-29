@@ -1,38 +1,38 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-8 offset-2">
+    <div class = "col-md-8 offset-md-2">
       <% if @post_blog.errors.any? %>
         <%= render 'error', post_blog: @post_blog %>
       <% end %>
       <%= form_with model: @post_blog, url: post_blog_path, method: :patch do |f| %>
         <div class = "row mt-5">
-          <label class = "col-3">投稿画像</label>
-          <div class = "col-9"><%= f.file_field :image, accept: "image/*", class: "form-control-file" %></div>
+          <label class = "col-md-3">投稿画像</label>
+          <div class = "col-md-9"><%= f.file_field :image, accept: "image/*", class: "form-control-file" %></div>
         </div>
         <div class = "row mt-3">
-          <label class = "col-3">タイトル</label>
-          <div class = "col-9"><%= f.text_field :title, class: "form-control"%></div>
+          <label class = "col-md-3">タイトル</label>
+          <div class = "col-md-9"><%= f.text_field :title, class: "form-control"%></div>
         </div>
         <div class = "row mt-3">
-          <label class = "col-3">投稿内容</label>
-          <div class = "col-9"><%= f.text_area :blog, class: "form-control"%></div>
+          <label class = "col-md-3">投稿内容</label>
+          <div class = "col-md-9"><%= f.text_area :blog, class: "form-control"%></div>
         </div>
         <div class = "row mt-3">
-          <label class = "col-3">タグ付けしよう！</label>
-          <div class = "col-9"><%= f.text_field :name, value: @tag_list, placeholder: ",(カンマ)で区切って複数タグ付け可能(例：胸トレ,ランニング)", class: "form-control" %></div>
+          <label class = "col-md-3">タグ付けしよう！</label>
+          <div class = "col-md-9"><%= f.text_field :name, value: @tag_list, placeholder: ",(カンマ)で区切って複数タグ付け可能(例：胸トレ,ランニング)", class: "form-control" %></div>
         </div>
         <div class = "row mt-3">
-          <label class = "col-3">公開・下書き保存</label>
+          <label class = "col-md-3 mb-3">公開・下書き保存</label>
           <!--mapで文字列を取り出す、送る値で変換　セレクト内を日本語化-->
-          <div class = "col-3"> <%= f.select :status, PostBlog.statuses_i18n.map{|k, v| [v,k]}, class: "form-select" %></div>
-          <div class = "col-3">
+          <div class = "col-md-3 mb-3"> <%= f.select :status, PostBlog.statuses_i18n.map{|k, v| [v,k]}, class: "form-select" %></div>
+          <div class = "col-md-3 mb-3">
             <% if current_user.present? %>
               <%= link_to "下書き一覧", confirm_post_blogs_path, class: "btn btn-info" %>
             <% end %>
           </div>
         </div>
-        <div class = "row mt-3">
-          <div class = "col-4 offset-3"><%= f.submit '更新', class: "btn btn-success" %></div>
+        <div class = "row">
+          <div class = "col-md-4 offset-md-3"><%= f.submit '更新', class: "btn btn-success" %></div>
         </div>
       <% end %>
     </div>

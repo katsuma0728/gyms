@@ -16,7 +16,7 @@ body { min-height: 100vh; }
 }
 
 .top_text {
-    color: #FFFF00;
+    color: #FFFFFF;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -49,9 +49,12 @@ ul {
   visibility: hidden;
 }
 
-.day {
+table.calendar{
+td.day {
   height: 100px !important;
-  width: 10%;
+  // レスポンシブ対応　レイアウト維持のため
+  min-width: 104px;
+}
 }
 
 //過去日付は色を変える
@@ -88,4 +91,26 @@ ul {
 .alert {
   text-align: center;
   background-color: #F0E68C;
+}
+
+@media screen and (max-width: 550px) {
+  .top_background {
+      background-image: url("../images/responsive_top_background_image.jpg");
+  }
+
+  .top_text {
+      font-size: 0.8em;
+  }
+
+  .unsubscribe_text {
+      font-size: 1em;
+  }
+
+  .unsubscribe_background {
+      background-position: 50% 50%;
+  }
+  
+  .activities_text {
+      font-saize: 0.5em;
+  }
 }
