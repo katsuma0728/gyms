@@ -20,14 +20,14 @@
             <%= f.password_field :password, autocomplete: "off", class: "form-control", id: "inputPassword", placeholder: "パスワード" %>
           </div>
           <div class="row">
-            <div class = "col-6 offset-3 mt-2">
+            <div class = "col-6 offset-3">
               <%= f.submit "ログイン", class: "btn btn-lg btn-block btn-info" %>
             </div>
           </div>
         <% end %>
-        <div class = "row">
-          <div class = "col-6 offset-3 mt-2">
-            <%= link_to "新規登録はこちらから", new_user_registration_path, class: "btn btn-block btn-secondary" %>
+        <div class = "row mt-2">
+          <div class = "col-6 offset-3">
+            <%= link_to "新規登録へ", new_user_registration_path, class: "btn btn-block btn-secondary" %>
           </div>
         </div>
       </div>

@@ -1,32 +1,32 @@
-  <div class = "container p-5">
-    <div class = "row mt-5 p-5">
-      <div class = "col-7 offset-5 top_text mt-5">
-        <h1><strong>gyms</strong>でモチベーションUP！</h1>
-        <h5>~ブログ投稿、トレーニングスケジュールを共有しよう~</h5>
-      </div>
+<div class = "container">
+  <div class = "row mt-5">
+    <div class = "col-md-12">
+      <h5 class = "top_text text-right"><strong>gyms</strong>でモチベーションUP！</h5>
+      <h5 class = "top_text text-right">~ブログ投稿、トレーニングスケジュールを共有しよう~</h5>
     </div>
-    <div class = "row mt-5">
-      <div class = "col-6 offset-3 text-white mt-5">
-        <h2 class = "top_text"><strong>早速使ってみよう！</strong></h2>
-      </div>
+  </div>
+  <div class = "row mt-5">
+    <div class = "col-md-12">
+      <h2 class = "top_text text-center"><strong>早速使ってみよう！</strong></h2>
     </div>
-    <div class = "row mt-5">
+  </div>
+  <div class = "row mt-5">
     <% if admin_signed_in? %>
-      <div class = "col-4">
+      <div class = "col-md-4 mt-3">
         <%= link_to "ユーザー管理", admin_users_path, class: "btn btn-secondary btn btn-block text-white" %>
       </div>
     <% elsif user_signed_in? %>
-      <div class = "col-4">
+      <div class = "col-md-4 mt-3">
         <%= link_to "投稿してみよう！", new_post_blog_path, class: "btn btn-secondary btn btn-block" %>
       </div>
     <% else %>
-      <div class = "col-4">
+      <div class = "col-md-4 mt-3">
         <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary btn btn-block" %>
       </div>
-      <div class = "col-4">
+      <div class = "col-md-4 mt-3">
         <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary btn btn-block" %>
       </div>
-      <div class = "col-4">
+      <div class = "col-md-4 mt-3">
         <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-secondary btn btn-block" %>
       </div>
     <% end %>
