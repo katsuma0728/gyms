@@ -93,6 +93,10 @@ td.day {
   background-color: #F0E68C;
 }
 
+.admin_users {
+    font-saize: 0.8em;
+}
+
 @media screen and (max-width: 550px) {
   .top_background {
       background-image: url("../images/responsive_top_background_image.jpg");
@@ -117,4 +121,9 @@ td.day {
   .form-inline {
       flex-flow: nowrap;
 }
+
+.admin_users {
+    font-size: 0.3em;
+}
+
 }
