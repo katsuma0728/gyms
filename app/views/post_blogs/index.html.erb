@@ -1,6 +1,6 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-4 mt-5 mb-3">
+    <div class = "col-md-4 mt-5 mb-3">
       <%= form_with url: search_post_blogs_path, method: :get, local: true, class: "form-inline" do |f| %>
         <%= f.search_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "form-control" %>
         <%= button_tag type: "submit", class: "btn btn-success" do %>
@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class = "row">
-    <div class = "col-3">
+    <div class = "col-md-3">
       <% @tag_list.each do |list| %>
         <%= link_to search_tag_post_blogs_path(tag_id: list.id) do %>
           <div class = "d-inline-flex bg-secondary rounded-pill m-1 p-1">
@@ -21,7 +21,7 @@
     </div>
   </div>
   <div class = "row">
-    <div class = "col-11 offset-1">
+    <div class = "col-md-7 offset-md-4">
       <%= render 'card', post_blogs: @post_blogs %>
     </div>
   </div>

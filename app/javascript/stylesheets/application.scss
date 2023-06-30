@@ -109,8 +109,12 @@ td.day {
   .unsubscribe_background {
       background-position: 50% 50%;
   }
-  
+
   .activities_text {
       font-saize: 0.5em;
   }
+
+  .form-inline {
+      flex-flow: nowrap;
+}
 }

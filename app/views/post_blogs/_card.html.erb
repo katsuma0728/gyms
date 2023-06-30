@@ -1,10 +1,10 @@
 <% if post_blogs.count != 0 %>
   <% post_blogs.each do |post_blog| %>
-    <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <div class="card mx-auto mt-4 shadow-lg">
       <%= image_tag post_blog.get_image(200,200), class: "card-img-top" %>
       <div class="card-body">
         <div class = "row">
-          <div class = "col-4">
+          <div class = "col-md-4 mb-3">
             <div class = "text-left">
               <% if current_user.present? %>
                 <%= link_to user_path(post_blog.user.id) do %>
@@ -32,7 +32,7 @@
               <% end %>
             </div>
           </div>
-          <div class = "col-8 icon">
+          <div class = "col-md-8 icon">
             <h5 class = "card-title">
               <% if post_blog.published? %>
                 <%= link_to post_blog_path(post_blog.id) do %>
@@ -44,7 +44,7 @@
                 <% end %>
               <% end %>
             </h5>
-            <p class = "card-text">
+            <p class = "card-text mt-2">
               <%= post_blog.blog %>
               <% post_blog.tags.each do |tag| %>
                 <%= link_to search_tag_post_blogs_path(tag_id: tag.id), class: "link_edit" do %>
@@ -76,7 +76,7 @@
 <%else%>
   <div class = "container">
     <div class = "row">
-      <div class = "col-6 offset-4 alert alert-warning", role="alert">
+      <div class = "col-md-6 offset-md-4 alert alert-warning", role="alert">
         <h5>投稿はありません！</h5>
         <% if current_user.present? %>
           <h5><i class = "far fa-file-alt fa-2x mx-2"></i>から投稿してみよう！</h5>

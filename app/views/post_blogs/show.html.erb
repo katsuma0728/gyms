@@ -1,11 +1,11 @@
 <div class = "container">
   <div class = "row mt-5">
-    <div class = "col-8 offset-2">
+    <div class = "col-md-8 offset-md-2">
       <div class="card mx-auto mt-4 shadow-lg">
         <%= image_tag @post_blog.get_image(300,300), class: "card-img-top" %>
         <div class="card-body">
           <div class = "row">
-            <div class = "col-4">
+            <div class = "col-md-4 mb-3">
               <div class = "text-left">
                 <% if current_user.present? %>
                   <%= link_to user_path(@post_blog.user.id) do %>
@@ -29,11 +29,11 @@
                 <% end %>
               </div>
             </div>
-            <div class = "col-8 icon">
+            <div class = "col-md-8 icon">
               <h5 class = "card-title">
                 <%= @post_blog.title %>
               </h5>
-              <p class = "card-text">
+              <p class = "card-text mt-2">
                 <%= @post_blog.blog %>
                 <% @post_tags.each do |tag| %>
                   <%= link_to search_tag_post_blogs_path(tag_id: tag.id), class: "link_edit" do %>
@@ -72,14 +72,14 @@
         </div>
       </div>
       <div class = "row mt-2">
-        <div class = "col-12">
+        <div class = "col-md-12">
           <span id = "comments_area">
             <%= render 'post_comments/comment', post_blog: @post_blog %>
           </span>
         </div>
       </div>
       <div class = "row mt-5">
-        <div class = "col-12">
+        <div class = "col-md-12">
           <!--エラーメッセージ表示、非同期通信によりrenderから読み込み-->
           <span id = "error_comment">
             <%= render 'post_comments/error', error_comment: @error_comment %>

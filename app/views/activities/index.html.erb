@@ -1,22 +1,19 @@
 <div class = "container p-5">
   <div class = "row">
-    <div class = "col-md-9 offset-md-2">
+    <div class = "col-md-8 offset-md-2">
       <% if @activities.present? %>
         <% @activities.each do |activity| %>
           <div class="row ralert alert-light p-2 mb-2" role="alert">
-            <div class = "col-md-1">
+            <div class = "col-1 pt-1">
               <%= image_tag activity.subject.user.get_profile_image(50,50), class: "rounded-circle" %>
             </div>
-            <div class = "col-md-7">
-                <p class = "activities_text">
-                  <%= link_to read_activity_path(activity.id), method: :patch do %>
-                    <%= activity.subject.name %>さんがあなたの<%= activity.action_type_i18n %>!
-                  <% end %>
-                </p>
-            </div>
-            <div class = "col-md-4">
+            <div class = "col-11 pt-3">
+              <p class = "activities_text">
+                <%= link_to read_activity_path(activity.id), method: :patch do %>
+                  <%= activity.subject.name %>さんがあなたの<%= activity.action_type_i18n %>!
+                <% end %>
+              </p>
               <p class = "text-right" style="font-size: 0.8em;"><%= l activity.created_at, format: :long %></p>
-            </div>
           </div>
           <%= paginate @activities %>
         <% end %>
