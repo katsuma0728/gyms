@@ -13,6 +13,7 @@ class Admin::SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     if  @schedule.update(schedule_params)
+        flash[:notice] = "カレンダーを更新しました"
         redirect_to admin_user_path(@schedule.user.id)
     else
       render :edit
@@ -22,6 +23,7 @@ class Admin::SchedulesController < ApplicationController
   def destroy
     @schedule = Schedule.find(params[:id])
     @schedule.destroy
+    flash[:notice] = "削除しました"
     redirect_to admin_user_path(@schedule.user.id)
   end
 

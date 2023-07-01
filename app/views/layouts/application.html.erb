@@ -51,7 +51,11 @@
                 </li>
                 <li class="nav-item mx-4">
                   <%= link_to activities_path, class: "edit_link" do %>
-                    <i class="fas fa-bell mr-1"></i>Notice
+                    <% if current_user.activities.where(checked: false).exists? %>
+                      <span  style="color: #FFFF00;"><i class="fas fa-bell mr-1"></i>Notice</span>
+                    <% else %>
+                      <i class="fas fa-bell mr-1"></i>Notice
+                    <% end %>
                   <% end %>
                 </li>
                 <li class="nav-item mx-4">

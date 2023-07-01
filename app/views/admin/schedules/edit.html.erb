@@ -2,11 +2,13 @@
   <div class="row mt-5 p-5">
     <div class="col-md-6 offset-md-3">
       <% if @schedule.errors.any? %>
-        <ul>
-          <% @schedule.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+        <div class="alert" role="alert">
+          <ul>
+            <% @schedule.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
       <%= form_with model: @schedule, url: admin_schedule_path, method: :patch do |f| %>
         <div class = "mb-3">

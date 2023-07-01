@@ -11,8 +11,8 @@ body { min-height: 100vh; }
 
 .unsubscribe_background {
     background-image: url("../images/gyms_unsubscribe_background_image.jpg");
-     background-size: cover;
-     background-position: top top;
+    background-size: cover;
+    background-position: top top;
 }
 
 .top_text {
@@ -41,19 +41,19 @@ ul {
 
 .prev-month {
 // カレンダーのカスタマイズ、日付調整、要素は存在するが見えないようにする
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .next-month {
 // カレンダーのカスタマイズ、日付調整、要素は存在するが見えないようにする
-  visibility: hidden;
+    visibility: hidden;
 }
 
-table.calendar{
-td.day {
-  height: 100px !important;
-  // レスポンシブ対応　レイアウト維持のため
-  min-width: 104px;
+table.calendar {
+    td.day {
+    height: 100px !important;
+    // レスポンシブ対応　レイアウト維持のため
+    min-width: 104px;
 }
 }
 
@@ -93,8 +93,10 @@ td.day {
   background-color: #F0E68C;
 }
 
-.admin_users {
-    font-saize: 0.8em;
+table.admin_users {
+    th {
+        min-width: 185px;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -114,10 +116,6 @@ td.day {
       background-position: 50% 50%;
   }
 
-  .activities_text {
-      font-saize: 0.5em;
-  }
-
   .form-inline {
       flex-flow: nowrap;
 }
@@ -125,5 +123,4 @@ td.day {
 .admin_users {
     font-size: 0.3em;
 }
-
 }
