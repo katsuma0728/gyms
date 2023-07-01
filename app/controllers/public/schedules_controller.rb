@@ -8,9 +8,13 @@ class Public::SchedulesController < ApplicationController
   def index
     @schedule = Schedule.new
     @user = current_user
-    schedules = @user.schedules.page(params[:page]).per(10)
+    # parseでTime型を作る
+    start_time = params[:start_date] ? Time.parse(params[:start_date]) : Time.current
+    beginning_of_month = start_time.beginning_of_month
+    end_of_month = start_time.end_of_month
+    schedules = @user.schedules.where(start_time: beginning_of_month..end_of_month)
     # 日付順に表示
-    @schedules = schedules.order(start_time: :asc)
+    @schedules = schedules.page(params[:page]).per(10).order(start_time: :asc)
   end
 
   def create
