@@ -31,7 +31,9 @@ class PostBlog < ApplicationRecord
   end
 
   def save_tag(sent_tags)
-  # タグが存在していれば、タグの名前を配列として全て取得
+    # 同じ文字列のタグを１つにする
+    sent_tags = sent_tags.uniq
+   # タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     # 現在取得したタグから送られてきたタグを除いてoldtagとする
     old_tags = current_tags - sent_tags

@@ -9,28 +9,28 @@
         <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
           <%= render "public/shared/error_messages", resource: resource %>
           <div class = "row mb-3">
-            <label class = "col-5">プロフィール画像</label>
-            <div class = "col-7"><%= f.file_field :profile_image, accept: "profile_image/*", class: "form-control-file" %></div>
+            <label class = "col-md-5">プロフィール画像</label>
+            <div class = "col-md-7"><%= f.file_field :profile_image, accept: "profile_image/*", class: "form-control-file" %></div>
           </div>
           <div class="row mb-3">
-            <label class = "col-5">ユーザーネーム</label>
-            <div class = "col-7"><%= f.text_field :name, autocomplete: "off", autofocus: true, class: "form-control" %></div>
+            <label class = "col-md-5">ユーザーネーム</label>
+            <div class = "col-md-7"><%= f.text_field :name, autocomplete: "off", autofocus: true, class: "form-control" %></div>
           </div>
           <div class = "row mb-3">
-            <label class = "col-5">生年月日</label>
-            <div class = "col-7">
+            <label class = "col-md-5">生年月日</label>
+            <div class = "col-md-7">
               <%= f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(2000, 1, 1) %>
             </div>
           </div>
           <div class = "row mb-3">
-            <label class = "col-5">性別（任意です。）</label>
-            <div class = "col-7">
+            <label class = "col-md-5">性別（任意です。）</label>
+            <div class = "col-md-7">
               <%= f.select :sex, User.sexes.keys.to_a, { include_blank: '選択してください'} %>
             </div>
           </div>
           <div class = "row mb-3">
-            <label class = "col-5">目標をたてよう！</label>
-            <div class = "col-7">
+            <label class = "col-md-5">目標をたてよう！</label>
+            <div class = "col-md-7">
               <%= f.text_area :introduction, autofocus: true, class: "form-control", placeholder: "夏までに－10キロ！など" %>
               <div class = "row mt-3">
                 <div class="input-group mb-3">
@@ -55,13 +55,13 @@
             </div>
           </div>
           <div class = "row mt-2">
-            <div class = "col-6 offset-3">
+            <div class = "col-md-6 offset-md-3">
               <%= f.submit "新規登録", class: "btn btn-block btn-info" %>
             </div>
           </div>
         <% end %>
         <div class = "row">
-          <div class = "col-6 offset-3 mt-2">
+          <div class = "col-md-6 offset-md-3 mt-2">
             <%= link_to "ログインはこちらから",  new_user_session_path, class: "btn btn-block btn-secondary" %>
           </div>
         </div>

@@ -5,8 +5,14 @@
         <%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle" %>
       </div>
       <div class = "text-center mt-1" style="font-size: 0.8em;">
-        <%= link_to user_path(post_comment.user.id) do %>
-          <%= post_comment.user.name %>
+        <% if current_user.present? %>
+          <%= link_to user_path(post_comment.user.id) do %>
+            <%= post_comment.user.name %>
+          <% end %>
+        <% else %>
+          <%= link_to admin_user_path(post_comment.user.id) do %>
+            <%= post_comment.user.name %>
+          <% end %>
         <% end %>
       </div>
     </div>

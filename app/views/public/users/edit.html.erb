@@ -27,9 +27,9 @@
           <label>メールアドレス</label>
           <%= f.email_field :email, class: "form-control" %>
         </div>
-        <div class="mb-3">
+        <div>
           <%= f.submit "保存", class: "btn btn-success" %>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-primary mx-5" %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-primary mx-2" %>
           <%= link_to "退会する", confirm_unsubscribe_path, class: "btn btn-danger" %>
         </div>
       <% end %>

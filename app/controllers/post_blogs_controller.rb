@@ -85,7 +85,11 @@ class PostBlogsController < ApplicationController
           redirect_to post_blogs_path
         else
           flash[:notice] = "下書きを更新しました"
-          redirect_to confirm_post_blogs_path
+          if user_signed_in?
+            redirect_to confirm_post_blogs_path
+          else
+            redirect_to post_blogs_path
+          end
         end
     else
       render :edit
