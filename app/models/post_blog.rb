@@ -11,7 +11,7 @@ class PostBlog < ApplicationRecord
   enum status: { published: 0, draft: 1 }
 
   validates :title, presence: true
-  validates :blog, presence: true
+  validates :blog, presence: true, length: { maximum: 200 }
 
   def self.search(keyword)
     #投稿タイトル、内容、ユーザーネームで検索
