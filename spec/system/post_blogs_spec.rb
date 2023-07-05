@@ -22,6 +22,7 @@ describe '投稿画面のテスト' do
       visit new_post_blog_path
     end
     context '入力フォーム、下書き一覧へのリンク、投稿ボタンが表示されているか' do
+      
       expect(page).to have_field 'post_blog[image]'
       expect(page).to have_field 'post_blog[title]'
       expect(page).to have_field 'post_blog[blog]'

@@ -11,9 +11,9 @@ class User < ApplicationRecord
   has_many :activities, dependent: :destroy
   has_many :schedules, dependent: :destroy
 
-  validates :name, presence: true
-  validates :email, presence: true
+  validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
   validates :introduction, presence: true
+  validates :email, presence: true, uniqueness: true
 
   has_one_attached :profile_image
   enum sex: { 男性: 0, 女性: 1}
