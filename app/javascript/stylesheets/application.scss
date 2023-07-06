@@ -99,6 +99,13 @@ table.admin_users {
     }
 }
 
+.new-img{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+
 @media screen and (max-width: 550px) {
   .top_background {
       background-image: url("../images/responsive_top_background_image.jpg");
@@ -123,4 +130,17 @@ table.admin_users {
 .admin_users {
     font-size: 0.3em;
 }
+
+.new-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.edit-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
 }
