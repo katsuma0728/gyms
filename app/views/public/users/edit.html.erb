@@ -4,8 +4,11 @@
       <%= render "public/shared/error_messages", resource: @user %>
       <%= form_with model: @user, url: user_path, method: :patch do |f| %>
         <div class = "mb-3">
-          <label>プロフィール画像</label>
+          <div>現在のプロフィール画像</div>
+          <%= image_tag @user.get_profile_image(200,200), class: "rounded-circle edit-img mt-2 mb-2" %>
+          <div>↓より更新後の画像を選択</div>
           <%= f.file_field :profile_image, accept: "profile_image/*", class: "form-control-file" %>
+          <div class = "pt-2" id="new-user-image"></div>
         </div>
         <div class="mb-3">
           <label>ユーザーネーム</label>

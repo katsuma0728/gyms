@@ -14,7 +14,7 @@ describe 'user新規登録のテスト' do
       fill_in 'user[password]', with: 'password'
       fill_in 'user[password_confirmation]', with: 'password'
       click_button '新規登録'
-      expect(current_path).to eq current_path
+      expect(current_path).to eq user_path(current_user)
       expect(page).to have_content 'アカウント登録が完了しました'
     end
   end

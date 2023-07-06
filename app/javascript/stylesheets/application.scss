@@ -105,6 +105,12 @@ table.admin_users {
   object-fit: cover;
 }
 
+.new-user-img{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
 @media screen and (max-width: 550px) {
   .top_background {
@@ -141,6 +147,18 @@ table.admin_users {
   width: 100px;
   height: 100px;
   object-fit: cover;
+}
+
+.new-user-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
 }
 
 }
