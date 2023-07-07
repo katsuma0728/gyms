@@ -3,11 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Userモデルのテスト', type: :model do
-  let!(:user) { create(:user) }
-  let(:other_user) { create(:user) }
-
   describe 'バリデーションのテスト' do
 
+    let!(:other_user) { create(:user) }
+    let(:user) { build(:user) }
+    
     context 'nameカラム' do
       it '空欄でないこと' do
         user.name = ''
@@ -42,6 +42,15 @@ RSpec.describe 'Userモデルのテスト', type: :model do
       it '一意性があること' do
         user.email = other_user.email
         expect(user.valid?).to eq false
+      end
+    end
+  end
+  
+  describe 'アソシエーションのテスト' do
+
+    context 'PostBlogモデルとの関係' do
+      it '1:Nとなっている' do
+        expect(User.reflect_on_association(:post_blogs).macro).to eq :has_many
       end
     end
   end

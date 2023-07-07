@@ -4,30 +4,38 @@ require 'rails_helper'
 
 RSpec.describe 'PostBlogモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
-    subject { post_blog.valid? }
 
     let(:user) { create(:user) }
     let!(:post_blog) { build(:post_blog, user_id: user.id) }
-    
+
     context 'titleカラム' do
       it '空欄でないこと' do
         post_blog.title = ''
-        is_expected.to eq false
+        expect(post_blog.valid?).to eq false
       end
     end
 
-    context 'bodyカラム' do
+    context 'blogカラム' do
       it '空欄でないこと' do
-        post_blog.body = ''
-        is_expected.to eq false
+        post_blog.blog = ''
+        expect(post_blog.valid?).to eq false
       end
       it '200文字以下であること: 200文字は〇' do
-        post_blog.body = Faker::Lorem.characters(number: 200)
-        is_expected.to eq true
+        post_blog.blog = Faker::Lorem.characters(number: 200)
+        expect(post_blog.valid?).to eq true
       end
       it '200文字以下であること: 201文字は×' do
-        post_blog.body = Faker::Lorem.characters(number: 201)
-        is_expected.to eq false
+        post_blog.blog = Faker::Lorem.characters(number: 201)
+        expect(post_blog.valid?).to eq false
+      end
+    end
+  end
+
+  describe 'アソシエーションのテスト' do
+
+    context 'Userモデルとの関係' do
+      it 'N:1となっている' do
+        expect(PostBlog.reflect_on_association(:user).macro).to eq :belongs_to
       end
     end
   end
