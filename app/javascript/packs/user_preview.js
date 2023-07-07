@@ -1,4 +1,4 @@
-if (document.URL.match(/sign_/) || document.URL.match(/edit/)) {
+if (document.URL.match(/sign_up/) || document.URL.match(/edit/)) {
   document.addEventListener('DOMContentLoaded', () => {
     const createImageHTML = (blob) => {
       const imageElement = document.getElementById('new-user-image');
@@ -11,7 +11,7 @@ if (document.URL.match(/sign_/) || document.URL.match(/edit/)) {
     document.getElementById('user_profile_image').addEventListener('change', (e) =>{
       const imageContent = document.querySelector('img');
       if (imageContent){
-        if (document.URL.match(/edit/)) { 
+        if (document.URL.match(/edit/)) {
           // 画面上のimgを配列でもってきて先頭を削除
           document.getElementsByTagName('img')[1].remove()
         }else{

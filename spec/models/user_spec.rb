@@ -17,10 +17,10 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         user.name = Faker::Lorem.characters(number: 20)
         expect(user.valid?).to eq true
       end
-      # it '20文字以下であること: 21文字は×' do
-      #   user.name = Faker::Lorem.characters(number: 21)
-      #   expect(user.valid?).to eq false
-      # end
+      it '20文字以下であること: 21文字は×' do
+        user.name = Faker::Lorem.characters(number: 21)
+        expect(user.valid?).to eq false
+      end
       it '一意性があること' do
         user.name = other_user.name
         expect(user.valid?).to eq false

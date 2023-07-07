@@ -14,8 +14,8 @@ describe 'user新規登録のテスト' do
       fill_in 'user[password]', with: 'password'
       fill_in 'user[password_confirmation]', with: 'password'
       click_button '新規登録'
-      expect(current_path).to eq user_path(current_user)
-      expect(page).to have_content 'アカウント登録が完了しました'
+      expect(current_path).to eq user_path(id:1)
+      expect(page).to have_content "アカウント登録が完了しました"
     end
   end
   context '名前が未記入' do
@@ -26,11 +26,13 @@ describe 'user新規登録のテスト' do
       fill_in 'user[password]', with: 'password'
       fill_in 'user[password_confirmation]', with: 'password'
       click_button '新規登録'
-      expect(current_path).to eq new_user_registration_path
-      expect(page).to have_content '名前を入力してください'
+      expect(current_path).to eq "/users"
+      expect(page).to have_content 'ユーザーネームを入力してください'
     end
   end
   context '同じ名前が登録済み' do
+    let!(:user) { create(:user, name:'other_user', introduction:'other', email:'other@email.com', password:'password') }
+
     it 'userの新規作成が失敗' do
       fill_in 'user[name]', with: user.name
       fill_in 'user[introduction]', with: 'example'
@@ -38,8 +40,8 @@ describe 'user新規登録のテスト' do
       fill_in 'user[password]', with: 'password'
       fill_in 'user[password_confirmation]', with: 'password'
       click_button '新規登録'
-      expect(current_path).to eq new_user_registration_path
-      expect(page).to have_content '名前はすでに存在します'
+      expect(current_path).to eq "/users"
+      expect(page).to have_content 'ユーザーネームはすでに存在します'
     end
   end
   context '名前が21文字以上' do
@@ -50,8 +52,8 @@ describe 'user新規登録のテスト' do
       fill_in 'user[password]', with: 'password'
       fill_in 'user[password_confirmation]', with: 'password'
       click_button '新規登録'
-      expect(current_path).to eq new_user_registration_path
-      expect(page).to have_content '名前は20文字以内で入力してください'
+      expect(current_path).to eq "/users"
+      expect(page).to have_content "ユーザーネームは20文字以内で入力してください"
     end
   end
   context '目標が未記入' do
@@ -62,8 +64,8 @@ describe 'user新規登録のテスト' do
       fill_in 'user[password]', with: 'password'
       fill_in 'user[password_confirmation]', with: 'password'
       click_button '新規登録'
-      expect(current_path).to eq new_user_registration_path
-      expect(page).to have_content '目標を入力してください'
+      expect(current_path).to eq "/users"
+      expect(page).to have_content "目標を入力してください"
     end
   end
   context 'メールアドレス未記入' do
@@ -74,11 +76,13 @@ describe 'user新規登録のテスト' do
       fill_in 'user[password]', with: 'password'
       fill_in 'user[password_confirmation]', with: 'password'
       click_button '新規登録'
-      expect(current_path).to eq new_user_registration_path
-      expect(page).to have_content 'メールアドレスを入力してください'
+      expect(current_path).to eq "/users"
+      expect(page).to have_content "メールアドレスを入力してください"
     end
   end
   context '登録済メールアドレス' do
+    let!(:user) { create(:user, name:'other_user', introduction:'other', email:'other@email.com', password:'password') }
+
     it 'userの新規作成が失敗' do
       fill_in 'user[name]', with: 'user'
       fill_in 'user[introduction]', with: 'example'
@@ -86,8 +90,8 @@ describe 'user新規登録のテスト' do
       fill_in 'user[password]', with: 'password'
       fill_in 'user[password_confirmation]', with: 'password'
       click_button '新規登録'
-      expect(current_path).to eq new_user_registration_path
-      expect(page).to have_content 'メールアドレスはすでに存在します'
+      expect(current_path).to eq "/users"
+      expect(page).to have_content "メールアドレスはすでに存在します"
     end
   end
 end

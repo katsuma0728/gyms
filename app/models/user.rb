@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :activities, dependent: :destroy
   has_many :schedules, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :introduction, presence: true
   validates :email, presence: true, uniqueness: true
 
