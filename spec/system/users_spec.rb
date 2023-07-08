@@ -69,7 +69,7 @@ describe 'user新規登録のテスト' do
     end
   end
   context 'メールアドレス未記入' do
-    it 'customerの新規作成が失敗' do
+    it 'userの新規作成が失敗' do
       fill_in 'user[name]', with: 'user'
       fill_in 'user[introduction]', with: 'example'
       fill_in 'user[email]', with: nil
