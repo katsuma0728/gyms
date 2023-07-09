@@ -19,6 +19,10 @@ class Public::UsersController < ApplicationController
        flash[:notice] = "マイページを更新しました"
        redirect_to  user_path(@user.id)
     else
+      flash[:notice] = @user.errors.full_messages.join("\n")
+      # byebug
+      @user = User.find(params[:id])
+
       render :edit
     end
   end

@@ -1,4 +1,4 @@
-if (document.URL.match(/sign_up/) || document.URL.match(/edit/)) {
+// if (document.URL.match(/sign_up/) || document.URL.match(/edit/)) {
   document.addEventListener('DOMContentLoaded', () => {
     const createImageHTML = (blob) => {
       const imageElement = document.getElementById('new-user-image');
@@ -8,14 +8,18 @@ if (document.URL.match(/sign_up/) || document.URL.match(/edit/)) {
 
       imageElement.appendChild(blobImage);
     };
-    document.getElementById('user_profile_image').addEventListener('change', (e) =>{
-      const imageContent = document.querySelector('img');
+    const target = document.getElementById('user_profile_image');
+    if (target){
+    target.addEventListener('change', (e) =>{
+      const imageContent = document.getElementsByClassName('new-user-img')[0];
+      console.log('change!')
       if (imageContent){
-        if (document.URL.match(/edit/)) {
+        const target = document.getElementById('registraion_page');
+        if (target) {
           // 画面上のimgを配列でもってきて先頭を削除
-          document.getElementsByTagName('img')[1].remove()
-        }else{
           imageContent.remove();
+        }else{
+          document.getElementsByTagName('img')[1].remove()
         }
       }
 
@@ -23,5 +27,6 @@ if (document.URL.match(/sign_up/) || document.URL.match(/edit/)) {
       const blob = window.URL.createObjectURL(file);
       createImageHTML(blob);
     });
+    };
   });
-}
+// };

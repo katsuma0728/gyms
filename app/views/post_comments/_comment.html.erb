@@ -1,10 +1,10 @@
 <% post_blog.post_comments.each do |post_comment| %>
   <div class = "row ralert alert-light p-1 mb-2" role = "alert">
-    <div class = "col-2">
-      <div class = "text-center mt-1">
+    <div class = "col-md-3">
+      <div class = "text-left mt-1">
         <%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle" %>
       </div>
-      <div class = "text-center mt-1" style="font-size: 0.8em;">
+      <div class = "text-left mt-1" style="font-size: 0.8em;">
         <% if current_user.present? %>
           <%= link_to user_path(post_comment.user.id) do %>
             <%= post_comment.user.name %>
@@ -16,7 +16,7 @@
         <% end %>
       </div>
     </div>
-    <div class = "col-10">
+    <div class = "col-md-9">
       <p><%= post_comment.comment %></p>
       <p class = "text-right" style="font-size: 0.8em;">
         <%= l post_comment.created_at, format: :long %>

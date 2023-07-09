@@ -16,9 +16,15 @@
         <%= link_to "ユーザー管理", admin_users_path, class: "btn btn-secondary btn btn-block text-white" %>
       </div>
     <% elsif user_signed_in? %>
-      <div class = "col-md-4 mt-3">
-        <%= link_to "投稿してみよう！", new_post_blog_path, class: "btn btn-secondary btn btn-block" %>
-      </div>
+      <% if current_user.email == "guest@example.com" %>
+        <div class = "col-md-4 mt-3">
+          <%= link_to "ログアウトしてアカウントを作成しよう!", edit_user_path(current_user.id), class: "btn btn-primary" %>
+        </div>
+      <% else %>
+        <div class = "col-md-4 mt-3">
+          <%= link_to "投稿してみよう！", new_post_blog_path, class: "btn btn-secondary btn btn-block" %>
+        </div>
+      <% end %>
     <% else %>
       <div class = "col-md-4 mt-3">
         <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary btn btn-block" %>

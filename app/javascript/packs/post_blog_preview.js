@@ -1,5 +1,5 @@
-if (document.URL.match(/new/) || document.URL.match(/edit/)) {
-  
+//if (document.URL.match(/new/) || document.URL.match(/edit/)) {
+
   document.addEventListener('DOMContentLoaded', () => {
     const createImageHTML = (blob) => {
       const imageElement = document.getElementById('new-image');
@@ -9,14 +9,19 @@ if (document.URL.match(/new/) || document.URL.match(/edit/)) {
 
       imageElement.appendChild(blobImage);
     };
-    document.getElementById('post_blog_image').addEventListener('change', (e) =>{
+    const result = document.getElementById('post_blog_image')
+    if(result) {
+    result.addEventListener('change', (e) =>{
       const imageContent = document.querySelector('img');
       if (imageContent){
-        if (document.URL.match(/edit/)) { 
-          // 画面上のimgを配列でもってきて先頭を削除
-          document.getElementsByTagName('img')[1].remove()
-        }else{
+        const target = document.getElementById("new_post_blogs_page")
+
+        if (target) {
           imageContent.remove();
+          // 画面上のimgを配列でもってきて先頭を削除
+        }else{
+
+           document.getElementsByTagName('img')[1].remove()
         }
       }
 
@@ -24,5 +29,6 @@ if (document.URL.match(/new/) || document.URL.match(/edit/)) {
       const blob = window.URL.createObjectURL(file);
       createImageHTML(blob);
     });
+    };
   });
-}
+//}

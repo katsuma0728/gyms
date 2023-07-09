@@ -1,8 +1,9 @@
 class PostBlogsController < ApplicationController
+  # current_userはindexのみ
   skip_before_action :authenticate_user!
   before_action :is_matching_login_user, except: [:index]
   # ゲストユーザー管理
-  # before_action :ensure_general_user, only: [:create]
+  before_action :ensure_general_user, only: [:create, :show]
 
   def new
     @post_blog = PostBlog.new
@@ -112,12 +113,6 @@ class PostBlogsController < ApplicationController
     end
   end
 
-  # ゲストユーザー管理
-  # def ensure_general_user
-  #   if current_user.email == "guest@example.com"
-  #     redirect_to root_path
-  #   end
-  # end
 
   private
 
@@ -135,4 +130,13 @@ class PostBlogsController < ApplicationController
     end
   end
 
+  #ゲストユーザー管理
+  def ensure_general_user
+    if current_user.present?
+      if current_user.email == "guest@example.com"
+        redirect_to root_path
+      end
+    end
+  end
+  
 end

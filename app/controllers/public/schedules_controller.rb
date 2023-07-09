@@ -3,7 +3,7 @@ class Public::SchedulesController < ApplicationController
   # カレンダーのカスタマイズ、日曜日を始まりに
   before_action :set_beginning_of_week
   # ゲストユーザー管理
-  # before_action :ensure_general_user, only: [:create]
+  before_action :ensure_general_user, only: [:create]
 
   def index
     @schedule = Schedule.new
@@ -58,11 +58,11 @@ class Public::SchedulesController < ApplicationController
   end
 
   # ゲストユーザー管理
-  # def ensure_general_user
-  #   if current_user.email == "guest@example.com"
-  #     redirect_to root_path
-  #   end
-  # end
+  def ensure_general_user
+    if current_user.email == "guest@example.com"
+      redirect_to root_path
+    end
+  end
 
   private
 
