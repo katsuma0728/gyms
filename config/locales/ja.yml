@@ -46,5 +46,6 @@ ja:
          blog: 投稿内容
        schedule:
          title: 種目
+         memo: メモ
        post_comment:
          comment: コメント

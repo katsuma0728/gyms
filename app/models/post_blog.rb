@@ -10,7 +10,7 @@ class PostBlog < ApplicationRecord
   has_one_attached :image
   enum status: { published: 0, draft: 1 }
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 20 }
   validates :blog, presence: true, length: { maximum: 200 }
 
   def self.search(keyword)

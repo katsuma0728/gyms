@@ -53,5 +53,11 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         expect(User.reflect_on_association(:post_blogs).macro).to eq :has_many
       end
     end
+    
+    context 'Scheduleモデルとの関係' do
+      it '1:Nとなっている' do
+        expect(User.reflect_on_association(:schedules).macro).to eq :has_many
+      end
+    end
   end
 end

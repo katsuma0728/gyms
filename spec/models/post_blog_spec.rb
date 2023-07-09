@@ -13,6 +13,14 @@ RSpec.describe 'PostBlogモデルのテスト', type: :model do
         post_blog.title = ''
         expect(post_blog.valid?).to eq false
       end
+      it '20文字以下であること: 20文字は〇' do
+        post_blog.title = Faker::Lorem.characters(number: 20)
+        expect(post_blog.valid?).to eq true
+      end
+      it '20文字以下であること: 21文字は×' do
+        post_blog.title = Faker::Lorem.characters(number: 21)
+        expect(post_blog.valid?).to eq false
+      end
     end
 
     context 'blogカラム' do
