@@ -8,7 +8,7 @@
         <div class = "row mt-5">
           <div class = "col-md-3">選択中の画像</div>
           <div class = "col-md-9">
-            <%= image_tag @post_blog.get_image(200,200), class: "edit-img mb-2" %>
+            <%= image_tag @post_blog.get_image(200,200), class: "edit-img mb-2 new-img " %>
             <div>↓より更新後の画像を選択</div>
             <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
             <div class = "pt-2" id="new-image"></div>
@@ -43,35 +43,3 @@
     </div>
   </div>
 </div>
-
-<!--<script>-->
-<!--  if (document.URL.match(/new/) || document.URL.match(/edit/)) {-->
-  
-<!--  document.addEventListener('DOMContentLoaded', () => {-->
-<!--    const createImageHTML = (blob) => {-->
-<!--      const imageElement = document.getElementById('new-image');-->
-<!--      const blobImage = document.createElement('img');-->
-<!--      blobImage.setAttribute('class', 'new-img')-->
-<!--      blobImage.setAttribute('src', blob);-->
-
-<!--      imageElement.appendChild(blobImage);-->
-<!--    };-->
-<!--    document.getElementById('post_blog_image').addEventListener('change', (e) =>{-->
-<!--      const imageContent = document.querySelector('img');-->
-<!--      if (imageContent){-->
-<!--        if (document.URL.match(/edit/)) { -->
-          <!--画面上のimgを配列でもってきて先頭を削除-->
-<!--          document.getElementsByTagName('img')[1].remove()-->
-<!--        }else{-->
-<!--          imageContent.remove();-->
-<!--        }-->
-<!--      }-->
-
-<!--      const file = e.target.files[0];-->
-<!--      const blob = window.URL.createObjectURL(file);-->
-<!--      createImageHTML(blob);-->
-<!--    });-->
-<!--  });-->
-<!--}-->
-
-<!--</script>-->

@@ -16,9 +16,7 @@ import '@fortawesome/fontawesome-free/js/all'
 import "./script.js"
 import "./post_blog_preview"
 import "./user_preview"
-//import 'simple_calendar'
 
-// 以降のプログラムが動かなくなる
 Rails.start()
 //Turbolinks.start()
 ActiveStorage.start()

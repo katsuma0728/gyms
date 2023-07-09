@@ -20,9 +20,7 @@ class Public::UsersController < ApplicationController
        redirect_to  user_path(@user.id)
     else
       flash[:notice] = @user.errors.full_messages.join("\n")
-      # byebug
       @user = User.find(params[:id])
-
       render :edit
     end
   end

@@ -6,7 +6,7 @@
         <div class = "mb-3">
           <div>現在のプロフィール画像</div>
           <%# byebug %>
-          <%= image_tag @user.get_profile_image(200,200), class: "rounded-circle edit-img mt-2 mb-2" %>
+          <%= image_tag @user.get_profile_image(200,200), class: "rounded-circle edit-img mt-2 mb-2 new-user-img" %>
           <div>↓より更新後の画像を選択</div>
           <%= f.file_field :profile_image, accept: "profile_image/*", class: "form-control-file" %>
           <div class = "pt-2" id="new-user-image"></div>
@@ -40,34 +40,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  if (document.URL.match(/sign_up/) || document.URL.match(/edit/)) {
-  document.addEventListener('DOMContentLoaded', () => {
-    const createImageHTML = (blob) => {
-      const imageElement = document.getElementById('new-user-image');
-      const blobImage = document.createElement('img');
-      blobImage.setAttribute('class', 'new-user-img')
-      blobImage.setAttribute('src', blob);
-
-      imageElement.appendChild(blobImage);
-    };
-    document.getElementById('user_profile_image').addEventListener('change', (e) =>{
-      const imageContent = document.querySelector('img');
-      console.log('change!')
-      if (imageContent){
-        if (document.URL.match(/edit/)) {
-          // 画面上のimgを配列でもってきて先頭を削除
-          document.getElementsByTagName('img')[1].remove()
-        }else{
-          imageContent.remove();
-        }
-      }
-
-      const file = e.target.files[0];
-      const blob = window.URL.createObjectURL(file);
-      createImageHTML(blob);
-    });
-  });
-}
-</script>

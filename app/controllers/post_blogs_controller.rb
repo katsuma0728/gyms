@@ -23,6 +23,7 @@ class PostBlogsController < ApplicationController
         end
         redirect_to post_blogs_path
     else
+      #@post_blog = PostBlog.new
       render :new
     end
   end
@@ -76,25 +77,28 @@ class PostBlogsController < ApplicationController
     #入力されたタグを受け取る
     tag_list = params[:post_blog][:name].split(',')
     #もしpost_blogの情報が更新されたら
-    if @post_blog.update(post_blog_params)
-       #このpost_blog_idに紐づいたタグを@old_tagsに入れる
-       @old_tags = PostTag.where(post_blog_id: @post_blog.id)
-       @post_blog.save_tag(tag_list)
-        #公開なら
-        if params[:post_blog][:status] == "published"
-          flash[:notice] = "投稿を更新しました"
-          redirect_to post_blogs_path
-        else
-          flash[:notice] = "下書きを更新しました"
-          if user_signed_in?
-            redirect_to confirm_post_blogs_path
-          else
+      if @post_blog.update(post_blog_params)
+         #このpost_blog_idに紐づいたタグを@old_tagsに入れる
+         @old_tags = PostTag.where(post_blog_id: @post_blog.id)
+         @post_blog.save_tag(tag_list)
+          #公開なら
+          if params[:post_blog][:status] == "published"
+            flash[:notice] = "投稿を更新しました"
             redirect_to post_blogs_path
+          else
+            flash[:notice] = "下書きを更新しました"
+            if user_signed_in?
+              redirect_to confirm_post_blogs_path
+            else
+              redirect_to post_blogs_path
+            end
           end
-        end
-    else
-      render :edit
-    end
+      else
+        #flash[:notice] = @post_blog.errors.full_messages.join("\n")
+        #@post_blog = PostBlog.find(params[:id])
+        #@tag_list = @post_blog.tags.pluck(:name).join(',')
+        render :edit
+      end
   end
 
   def destroy
@@ -117,7 +121,7 @@ class PostBlogsController < ApplicationController
   private
 
   def post_blog_params
-    params.require(:post_blog).permit(:image, :title, :blog, :status, :user_id, :tag_id, :post_tag_id, :name)
+    params.require(:post_blog).permit(:image, :title, :blog, :status, :user_id, :name)
   end
 
   # ログインユーザーと管理者以外はトップページへ
@@ -138,5 +142,5 @@ class PostBlogsController < ApplicationController
       end
     end
   end
-  
+
 end
