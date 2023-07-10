@@ -73,31 +73,32 @@ class PostBlogsController < ApplicationController
 
   def update
     @post_blog = PostBlog.find(params[:id])
+    # @post_blog_img = PostBlog.find(params[:id])
     #入力されたタグを受け取る
     tag_list = params[:post_blog][:name].split(',')
     #もしpost_blogの情報が更新されたら
-      if @post_blog.update(post_blog_params)
-         #このpost_blog_idに紐づいたタグを@old_tagsに入れる
-         @old_tags = PostTag.where(post_blog_id: @post_blog.id)
-         @post_blog.save_tag(tag_list)
-          #公開なら
-          if params[:post_blog][:status] == "published"
-            flash[:notice] = "投稿を更新しました"
-            redirect_to post_blogs_path
+    if @post_blog.update(post_blog_params)
+       #このpost_blog_idに紐づいたタグを@old_tagsに入れる
+       @old_tags = PostTag.where(post_blog_id: @post_blog.id)
+       @post_blog.save_tag(tag_list)
+        #公開なら
+        if params[:post_blog][:status] == "published"
+          flash[:notice] = "投稿を更新しました"
+          redirect_to post_blogs_path
+        else
+          flash[:notice] = "下書きを更新しました"
+          if user_signed_in?
+            redirect_to confirm_post_blogs_path
           else
-            flash[:notice] = "下書きを更新しました"
-            if user_signed_in?
-              redirect_to confirm_post_blogs_path
-            else
-              redirect_to post_blogs_path
-            end
+            redirect_to post_blogs_path
           end
-      else
-        #flash[:notice] = @post_blog.errors.full_messages.join("\n")
-        #@post_blog = PostBlog.find(params[:id])
-        #@tag_list = @post_blog.tags.pluck(:name).join(',')
-        render :edit
-      end
+        end
+    else
+      # 入力した情報を引き継ぐ
+      @post_blog = PostBlog.find(params[:id])
+      @post_blog.update(post_blog_params_without_image)
+      render :edit
+    end
   end
 
   def destroy
@@ -121,6 +122,10 @@ class PostBlogsController < ApplicationController
 
   def post_blog_params
     params.require(:post_blog).permit(:image, :title, :blog, :status, :user_id, :name)
+  end
+
+  def post_blog_params_without_image
+    params.require(:post_blog).permit(:title, :blog, :status, :user_id, :name)
   end
 
   # ログインユーザーと管理者以外はトップページへ
