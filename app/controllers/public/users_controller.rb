@@ -9,6 +9,12 @@ class Public::UsersController < ApplicationController
     @schedules = @user.schedules
   end
 
+  def likes
+    @user = User.find(params[:id])
+    likes = Like.where(user_id: @user.id).pluck(:post_blog_id)
+    @like_posts = PostBlog.find(likes)
+  end
+
   def edit
     @user = User.find(params[:id])
   end

@@ -29,7 +29,11 @@ Rails.application.routes.draw do
 
 
   scope module: :public do
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :update] do
+      member do
+        get :likes
+      end
+    end
     get 'unsubscribe/:id' => 'users#unsubscribe', as: 'confirm_unsubscribe'
     patch 'withdraw/:id' => 'users#withdraw', as: 'withdraw_user'
   end
@@ -37,7 +41,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :schedules, only: [:index, :new, :show, :edit, :create, :update, :destroy]
   end
-  
+
   resources :post_blogs, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     get 'search', on: :collection
     get "search_tag", on: :collection
