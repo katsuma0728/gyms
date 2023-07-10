@@ -50,8 +50,7 @@ class PostBlogsController < ApplicationController
 
   def index
     # 公開のみの投稿
-    post_blogs = PostBlog.published.page(params[:page]).per(5)
-    @post_blogs = post_blogs.order(created_at: :desc)
+    @post_blogs = PostBlog.published.order(created_at: :desc).page(params[:page]).per(5)
     post_blog_ids = PostBlog.published.pluck(:id)
     @tag_list = Tag.where(id: PostTag.where(post_blog_id: post_blog_ids).pluck(:tag_id))
   end

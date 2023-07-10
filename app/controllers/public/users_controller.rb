@@ -12,7 +12,9 @@ class Public::UsersController < ApplicationController
   def likes
     @user = User.find(params[:id])
     likes = Like.where(user_id: @user.id).pluck(:post_blog_id)
-    @like_posts = PostBlog.find(likes)
+    #@like_posts = PostBlog.find(likes)
+    # ↑配列ではpage表示できない
+    @like_posts = PostBlog.where(id: likes).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def edit
