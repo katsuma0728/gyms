@@ -16,8 +16,8 @@
               <p class = "text-right" style="font-size: 0.8em;"><%= l activity.created_at, format: :long %></p>
             </div>
           </div>
-          <%= paginate @activities %>
         <% end %>
+        <%= paginate @activities %>
       <% else %>
           <h5>通知はありません。</h5>
       <% end %>
