@@ -1,5 +1,5 @@
 class PostBlogsController < ApplicationController
-  # current_userはindexのみ
+  # 未ログインはindexのみ
   skip_before_action :authenticate_user!
   before_action :is_matching_login_user, except: [:index]
   # ゲストユーザー管理
@@ -23,7 +23,6 @@ class PostBlogsController < ApplicationController
         end
         redirect_to post_blogs_path
     else
-      #@post_blog = PostBlog.new
       render :new
     end
   end
