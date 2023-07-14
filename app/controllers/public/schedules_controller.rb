@@ -57,17 +57,19 @@ class Public::SchedulesController < ApplicationController
     redirect_to schedules_path
   end
 
-  # ゲストユーザー管理
-  def ensure_general_user
-    if current_user.email == "guest@example.com"
-      redirect_to root_path
-    end
-  end
+
 
   private
 
   def schedule_params
     params.require(:schedule).permit(:user_id, :title, :memo, :start_time)
+  end
+
+  # ゲストユーザー管理
+  def ensure_general_user
+    if current_user.email == "guest@example.com"
+      redirect_to root_path
+    end
   end
 
   # カレンダーのカスタマイズ、日曜日を始まりに
