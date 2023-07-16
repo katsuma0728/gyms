@@ -17,4 +17,3 @@ User.create!(
     {email: 'emma@example.com', password: 'password', name: 'Emma', birth_date: '1990-03-30', sex: '女性', introduction: '夏までに―５キロ', profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user3.jpg"), filename:"sample-user3.jpg")}
   ]
 )
-
