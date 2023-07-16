@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 2023_05_29_031408) do
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 2023_05_29_031408) do
 
   create_table "post_blogs", force: :cascade do |t|
     t.integer "user_id"
-    t.string "title", default: "", null: false
-    t.text "blog", default: "", null: false
+    t.string "title", null: false
+    t.text "blog", null: false
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -113,15 +113,15 @@ ActiveRecord::Schema.define(version: 2023_05_29_031408) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name", default: "", null: false
+    t.string "name", null: false
     t.date "birth_date"
     t.integer "sex"
-    t.text "introduction", default: "", null: false
+    t.text "introduction", null: false
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
