@@ -7,7 +7,7 @@
           <div>現在のプロフィール画像</div>
           <%= image_tag @user.get_profile_image(200,200), class: "rounded-circle  mt-2 mb-2 new-user-img" %>
           <div>↓より更新後の画像を選択</div>
-          <%= f.file_field :profile_image, accept: "profile_image/*", class: "form-control-file" %>
+          <%= f.file_field :profile_image, accept: "image/*", class: "form-control-file" %>
           <div class = "pt-2" id="new-user-image"></div>
         </div>
         <div class="mb-3">
