@@ -48,7 +48,7 @@
               <%= post_blog.blog %>
               <% post_blog.tags.each do |tag| %>
                 <%= link_to search_tag_post_blogs_path(tag_id: tag.id), class: "link_edit" do %>
-                  <span class = "bg-secondary text-white rounded-pill m-1 p-1" style="font-size: 0.5em;">
+                  <span class = "bg-secondary text-white rounded-pill m-1 p-1 text-nowrap" style="font-size: 0.5em;">
                     #<%= tag.name %><%= "(#{tag.post_blogs.published.count})" %>
                   </span>
                 <% end %>
