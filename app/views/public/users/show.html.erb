@@ -3,6 +3,16 @@
     <div class = "col-md-4 mt-5 text-center">
       <%= image_tag @user.get_profile_image(250,250), class: "rounded-circle" %>
       <div class = "icon mt-3 text-right pr-5">
+        <span class = "mx-2">
+          <%= link_to user_followings_path(@user.id) do %>
+            <%= @user.followings.count %>フォロー
+          <% end %>
+        </span>
+        <span class = "mx-2">
+          <%= link_to user_followers_path(@user.id) do %>
+            <%= @user.followers.count %>フォロワー
+          <% end %>
+        </span>
         <% if (current_user.present? && @user.id == current_user.id) %>
            <%= link_to edit_user_path(@user.id), class: "link_edit" do %>
               <i class="fas fa-user-cog fa-lg mx-3" style ="color: #006400;"></i>
@@ -10,9 +20,16 @@
            <%= link_to schedules_path, class: "link_edit" do %>
               <i class="far fa-calendar-plus fa-lg" style ="color: #006400;"></i>
            <% end %>
+        <% else %>
+          <% if current_user.following?(@user) %>
+            <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete, class: "btn btn-secondary m-2" %>
+          <% else %>
+            <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary m-2" %>
+          <% end %>
         <% end %>
       </div>
-      <p class = "text-right mr-5 mt-3">
+      
+      <p class = "text-right mr-5 mt-1">
         <%= link_to likes_user_path(@user.id) do %>
           <i class="fas fa-thumbs-up mx-1"></i>いいねした投稿
         <% end %>
