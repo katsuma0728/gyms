@@ -97,8 +97,16 @@ table.admin_users {
     th {
         min-width: 105px;
     }
+    td {
+        vertical-align: middle;
+    }
 }
 
+table.follow_users {
+    td {
+        vertical-align: middle;
+    }
+}
 .new-img{
   width: 200px;
   height: 200px;

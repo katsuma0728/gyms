@@ -1,25 +1,40 @@
 class Public::RelationshipsController < ApplicationController
+
+  # ゲストユーザー管理
+  before_action :ensure_general_user, only: [:create]
+
   # フォローするとき
   def create
     current_user.follow(params[:user_id])
     redirect_to request.referer
   end
-  
+
   # フォローを外すとき
   def destroy
     current_user.unfollow(params[:user_id])
     redirect_to request.referer
   end
-  
+
   # フォロー一覧
   def followings
     user = User.find(params[:user_id])
-    @users = user.followings.order(created_at: :desc).page(params[:page]).per(2)
+    @users = user.followings.order(created_at: :desc).page(params[:page]).per(10)
   end
-  
+
   # フォロワー一覧
   def followers
     user = User.find(params[:user_id])
-    @users = user.followers.order(created_at: :desc).page(params[:page]).per(2)
+    @users = user.followers.order(created_at: :desc).page(params[:page]).per(10)
+  end
+
+  private
+
+  #ゲストユーザー管理
+  def ensure_general_user
+    if current_user.present?
+      if current_user.email == "guest@example.com"
+        redirect_to root_path
+      end
+    end
   end
 end

@@ -5,12 +5,16 @@
         <% @activities.each do |activity| %>
           <div class="row alert-light p-2 mb-2">
             <div class = "col-1">
-              <%= image_tag activity.subject.user.get_profile_image(50,50), class: "rounded-circle" %>
+              <% if activity.subject.class.name == "Relationship" %>
+                <%= image_tag activity.subject.follow.get_profile_image(50,50), class: "rounded-circle" %>
+              <% else %>
+                <%= image_tag activity.subject.user.get_profile_image(50,50), class: "rounded-circle" %>
+              <% end %>
             </div>
             <div class = "col-11">
               <p>
                 <%= link_to read_activity_path(activity.id), method: :patch do %>
-                  <%= activity.subject.name %>さんがあなたの<%= activity.action_type_i18n %>!
+                  <%= activity.subject.name %>さんが<%= activity.action_type_i18n %>!
                 <% end %>
               </p>
               <p class = "text-right" style="font-size: 0.8em;"><%= l activity.created_at, format: :long %></p>

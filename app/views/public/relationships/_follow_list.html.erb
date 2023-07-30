@@ -2,8 +2,8 @@
   <div class = "row">
     <div class = "col-md-8 offset-md-4">
       <% if users.exists? %>
-        <% users.each do |user| %>
-          <table class = "table table-striped text-nowrap table-responsive">
+          <table class = "follow_users table table-striped text-nowrap table-responsive">
+            <% users.each do |user| %>
               <tr>
                 <td>
                   <%= link_to user_path(user.id) do %>
@@ -18,19 +18,18 @@
                 <td><%= user.followings.count %>フォロー</td>
                 <td><%= user.followers.count %>フォロワー</td>
               </tr>
-            </tbody>
+            <% end %>
           </table>
-        <% end %>
       <% else %>
         <div class = "mt-5">
           <h5>※ユーザーはいません</h5>
           <p><%= link_to "投稿一覧へ", post_blogs_path %></p>
         </div>
       <% end %>
-      <div class = "pagination mt-3">
-        <%= paginate users %>
-      </div>
     </div>
+  </div>
+  <div class = "pagination mt-3">
+    <%= paginate users %>
   </div>
 </div>
 

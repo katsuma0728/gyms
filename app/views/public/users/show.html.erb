@@ -21,17 +21,21 @@
               <i class="far fa-calendar-plus fa-lg" style ="color: #006400;"></i>
            <% end %>
         <% else %>
-          <% if current_user.following?(@user) %>
-            <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete, class: "btn btn-secondary m-2" %>
-          <% else %>
-            <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary m-2" %>
+          <!--自分以外のshow画面で表示-->
+          <!--ゲストユーザーはフォローボタンの表示をさせない。-->
+          <% unless @user.email == "guest@example.com" %>
+            <% if current_user.following?(@user) %>
+              <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete, class: "btn btn-secondary m-2" %>
+            <% else %>
+              <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary m-2" %>
+            <% end %>
           <% end %>
         <% end %>
       </div>
       <p class = "text-right mr-5 mt-2">
         <%= link_to posting_user_path(@user.id) do %>
           <% if (current_user.present? && @user.id == current_user.id) %>
-            <i class="far fa-file-alt mx-1"></i>投稿をみる
+            <i class="far fa-file-alt mx-1"></i>投稿を確認
           <% else %>
             <i class="far fa-file-alt mx-1"></i><%= @user.name %>さんの投稿
           <% end %>
