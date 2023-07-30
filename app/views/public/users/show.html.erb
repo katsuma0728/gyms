@@ -28,8 +28,10 @@
           <% end %>
         <% end %>
       </div>
-      
-      <p class = "text-right mr-5 mt-1">
+      <p class = "text-right mr-5 mt-2">
+        <%= link_to posting_user_path(@user.id) do %>
+          <i class="far fa-file-alt mx-1"></i><%= @user.name %>さんの投稿
+        <% end %></br>
         <%= link_to likes_user_path(@user.id) do %>
           <i class="fas fa-thumbs-up mx-1"></i>いいねした投稿
         <% end %>
