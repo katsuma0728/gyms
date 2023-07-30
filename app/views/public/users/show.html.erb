@@ -30,7 +30,11 @@
       </div>
       <p class = "text-right mr-5 mt-2">
         <%= link_to posting_user_path(@user.id) do %>
-          <i class="far fa-file-alt mx-1"></i><%= @user.name %>さんの投稿
+          <% if (current_user.present? && @user.id == current_user.id) %>
+            <i class="far fa-file-alt mx-1"></i>投稿をみる
+          <% else %>
+            <i class="far fa-file-alt mx-1"></i><%= @user.name %>さんの投稿
+          <% end %>
         <% end %></br>
         <%= link_to likes_user_path(@user.id) do %>
           <i class="fas fa-thumbs-up mx-1"></i>いいねした投稿

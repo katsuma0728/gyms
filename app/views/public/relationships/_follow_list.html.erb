@@ -1,26 +1,36 @@
-<% if users.exists? %>
-  <% users.each do |user| %>
-    <table>
-      <thead>
-        <tr>
-          <th>name</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <%= link_to user_path(user.id) do %>
-              <%= user.name %>
-            <% end %>
-          </td>
-          <td>フォロー数: <%= user.followings.count %></td>
-          <td>フォロワー数: <%= user.followers.count %></td>
-        </tr>
-      </tbody>
-    </table>
-  <% end %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-8 offset-md-4">
+      <% if users.exists? %>
+        <% users.each do |user| %>
+          <table class = "table table-striped text-nowrap table-responsive">
+              <tr>
+                <td>
+                  <%= link_to user_path(user.id) do %>
+                    <%= image_tag user.get_profile_image(50,50), class: "rounded-circle" %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to user_path(user.id) do %>
+                    <%= user.name %>
+                  <% end %>
+                </td>
+                <td><%= user.followings.count %>フォロー</td>
+                <td><%= user.followers.count %>フォロワー</td>
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
+      <% else %>
+        <div class = "mt-5">
+          <h5>※ユーザーはいません</h5>
+          <p><%= link_to "投稿一覧へ", post_blogs_path %></p>
+        </div>
+      <% end %>
+      <div class = "pagination mt-3">
+        <%= paginate users %>
+      </div>
+    </div>
+  </div>
+</div>
+
