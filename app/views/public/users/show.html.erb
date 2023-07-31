@@ -24,11 +24,9 @@
           <!--自分以外のshow画面で表示-->
           <!--ゲストユーザーはフォローボタンの表示をさせない。-->
           <% unless @user.email == "guest@example.com" %>
-            <% if current_user.following?(@user) %>
-              <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete, class: "btn btn-secondary m-2" %>
-            <% else %>
-              <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary m-2" %>
-            <% end %>
+            <span id = "follow_buttons_<%= @user.id %>">
+              <%= render 'public/relationships/follow', user: @user %>
+            </span>
           <% end %>
         <% end %>
       </div>
