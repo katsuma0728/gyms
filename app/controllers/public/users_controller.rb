@@ -49,11 +49,6 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def ensure_general_user
-    if current_user.email == "guest@example.com"
-      redirect_to root_path
-    end
-  end
 
   private
 
@@ -64,5 +59,11 @@ class Public::UsersController < ApplicationController
   # カレンダーのカスタマイズ、日曜日を始まりに
   def set_beginning_of_week
     Date.beginning_of_week = :sunday
+  end
+
+  def ensure_general_user
+    if current_user.email == "guest@example.com"
+      redirect_to root_path
+    end
   end
 end

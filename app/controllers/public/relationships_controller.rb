@@ -1,12 +1,14 @@
 class Public::RelationshipsController < ApplicationController
 
   # ゲストユーザー管理
+  include AjaxHelper
   before_action :ensure_general_user, only: [:create]
 
   # フォローするとき
   def create
     @user = User.find(params[:user_id])
     follow = Relationship.create(follower_id: params[:user_id], follow_id: current_user.id)
+    follow.save
     #redirect_to request.referer
   end
 
@@ -34,9 +36,9 @@ class Public::RelationshipsController < ApplicationController
 
   #ゲストユーザー管理
   def ensure_general_user
-    if current_user.present?
-      if current_user.email == "guest@example.com"
-        redirect_to root_path
+    if current_user.email == "guest@example.com"
+        respond_to do |format|
+        format.js { render ajax_redirect_to(root_path) }
       end
     end
   end
