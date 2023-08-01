@@ -22,14 +22,14 @@ class Public::RelationshipsController < ApplicationController
 
   # フォロー一覧
   def followings
-    user = User.find(params[:user_id])
-    @users = user.followings.order(created_at: :desc).page(params[:page]).per(10)
+    @user = User.find(params[:user_id])
+    @users = @user.followings.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   # フォロワー一覧
   def followers
-    user = User.find(params[:user_id])
-    @users = user.followers.order(created_at: :desc).page(params[:page]).per(10)
+    @user = User.find(params[:user_id])
+    @users = @user.followers.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   private

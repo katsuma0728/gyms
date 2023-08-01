@@ -28,6 +28,13 @@
       <% end %>
     </div>
   </div>
+  <div class = "row">
+    <div class = "col-md-8 offset-md-4">
+      <%= link_to user_path(user.id) do %>
+        <i class="fas fa-undo-alt"></i>ユーザーページへ戻る
+      <% end %>
+    </div>
+  </div>
   <div class = "pagination mt-3">
     <%= paginate users %>
   </div>
