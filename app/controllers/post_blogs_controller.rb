@@ -1,9 +1,9 @@
 class PostBlogsController < ApplicationController
   # 未ログインはindexのみ
   skip_before_action :authenticate_user!
-  before_action :is_matching_login_user, except: [:index]
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   # ゲストユーザー管理
-  before_action :ensure_general_user, only: [:create, :show]
+  before_action :ensure_general_user, only: [:create, :update, :show, :edit]
 
   def new
     @post_blog = PostBlog.new
@@ -129,9 +129,12 @@ class PostBlogsController < ApplicationController
 
   # ログインユーザーと管理者以外はトップページへ
   def is_matching_login_user
-    if user_signed_in?
-    elsif current_admin.present?
+    if current_admin.present?
        current_admin.email == 'admin@example.com'
+    elsif user_signed_in?
+      post_blogs = current_user.post_blogs
+      @post_blog = post_blogs.find_by(id: params[:id])
+      redirect_to post_blogs_path unless @post_blog
     else
       redirect_to root_path
     end

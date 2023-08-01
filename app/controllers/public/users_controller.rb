@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
 
+  before_action :is_matching_login_user, only: [:edit, :update, :unsubscribe]
   before_action :ensure_general_user, only: [:update, :unsubscribe]
   # カレンダーのカスタマイズ、日曜日を始まりに
   before_action :set_beginning_of_week
@@ -11,7 +12,7 @@ class Public::UsersController < ApplicationController
 
   def posting
     @user = User.find(params[:id])
-    @post_blogs = @user.post_blogs.order(created_at: :desc).page(params[:page]).per(5)
+    @post_blogs = @user.post_blogs.published.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def likes
@@ -54,6 +55,13 @@ class Public::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:profile_image, :name, :birth_date, :sex, :introduction, :email)
+  end
+
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to user_path(current_user.id)
+    end
   end
 
   # カレンダーのカスタマイズ、日曜日を始まりに

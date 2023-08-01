@@ -21,7 +21,7 @@
       <p class = "text-right" style="font-size: 0.8em;">
         <%= l post_comment.created_at, format: :long %>
         <% if (current_user.present? && post_comment.user.id == current_user.id) || (current_admin.present? && current_admin.email == 'admin@example.com') %>
-          <%= link_to "削除", post_blog_post_comment_path(post_comment.post_blog, post_comment), method: :delete, remote: true, class: "bg-danger text-white rounded-pill m-1 p-1" %>
+          <%= link_to "削除", post_blog_post_comment_path(post_comment.post_blog, post_comment), method: :delete, remote: true, class: "bg-danger text-white rounded-pill m-1 p-1", "data-confirm" => "本当に削除しますか？" %>
         <% end %>
       </p>
     </div>

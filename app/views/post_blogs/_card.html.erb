@@ -60,7 +60,7 @@
                 <%= link_to "#{post_blog.post_comments.count} 件のコメント", post_blog_path(post_blog.id) %>
               <% else %>
                 <%= link_to "#{post_blog.post_comments.count} 件のコメント", edit_post_blog_path(post_blog.id) %>
-                <%= link_to post_blog_path(post_blog.id), method: :delete do %>
+                <%= link_to post_blog_path(post_blog.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
                   <i class="fas fa-trash-alt mx-2"></i>
                 <% end %>
               <% end %>

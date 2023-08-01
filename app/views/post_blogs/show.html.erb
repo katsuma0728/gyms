@@ -48,7 +48,7 @@
                   <%= link_to edit_post_blog_path(@post_blog.id), class: "link_edit" do %>
                     <i class="fas fa-edit"></i>
                   <% end %>
-                  <%= link_to post_blog_path(@post_blog.id), method: :delete, class: "link_edit" do %>
+                  <%= link_to post_blog_path(@post_blog.id), method: :delete, class: "link_edit", "data-confirm" => "本当に削除しますか？" do %>
                     <i class="fas fa-trash-alt"></i>
                   <% end %>
                 </p>

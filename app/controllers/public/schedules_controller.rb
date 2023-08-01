@@ -2,6 +2,9 @@ class Public::SchedulesController < ApplicationController
 
   # カレンダーのカスタマイズ、日曜日を始まりに
   before_action :set_beginning_of_week
+
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+
   # ゲストユーザー管理
   before_action :ensure_general_user, only: [:create]
 
@@ -63,6 +66,12 @@ class Public::SchedulesController < ApplicationController
 
   def schedule_params
     params.require(:schedule).permit(:user_id, :title, :memo, :start_time)
+  end
+
+  def is_matching_login_user
+    schedules = current_user.schedules
+    @schedule = schedules.find_by(id: params[:id])
+    redirect_to post_blogs_path unless @schedule
   end
 
   # ゲストユーザー管理
