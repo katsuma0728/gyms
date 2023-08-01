@@ -10,6 +10,13 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :activities, dependent: :destroy
   has_many :schedules, dependent: :destroy
+  
+  # フォローをした、されたの関係
+  has_many :relationships, class_name: "Relationship", foreign_key: "follow_id", dependent: :destroy
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  # 一覧表示をするための記述
+  has_many :followings, through: :relationships, source: :follower
+  has_many :followers, through: :reverse_of_relationships, source: :follow
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :introduction, presence: true
@@ -39,5 +46,20 @@ class User < ApplicationRecord
       user.introduction = "ゲストでログイン"
       user.birth_date = DateTime.now
     end
+  end
+  
+  # フォローしたとき
+  def follow(user_id)
+    relationships.create(follower_id: user_id)
+  end
+  
+  # フォローを外したとき
+  def unfollow(user_id)
+    relationships.find_by(follower_id: user_id).destroy
+  end 
+  
+  # フォローしているか判定
+  def following?(user)
+    followings.include?(user)
   end
 end

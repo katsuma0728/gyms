@@ -9,6 +9,11 @@ class Public::UsersController < ApplicationController
     @schedules = @user.schedules
   end
 
+  def posting
+    @user = User.find(params[:id])
+    @post_blogs = @user.post_blogs.order(created_at: :desc).page(params[:page]).per(5)
+  end
+
   def likes
     @user = User.find(params[:id])
     likes = Like.where(user_id: @user.id).pluck(:post_blog_id)
@@ -44,11 +49,6 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def ensure_general_user
-    if current_user.email == "guest@example.com"
-      redirect_to root_path
-    end
-  end
 
   private
 
@@ -59,5 +59,11 @@ class Public::UsersController < ApplicationController
   # カレンダーのカスタマイズ、日曜日を始まりに
   def set_beginning_of_week
     Date.beginning_of_week = :sunday
+  end
+
+  def ensure_general_user
+    if current_user.email == "guest@example.com"
+      redirect_to root_path
+    end
   end
 end

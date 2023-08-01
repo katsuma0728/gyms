@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_29_031408) do
+ActiveRecord::Schema.define(version: 2023_07_29_014147) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -95,6 +95,13 @@ ActiveRecord::Schema.define(version: 2023_05_29_031408) do
     t.index ["post_blog_id", "tag_id"], name: "index_post_tags_on_post_blog_id_and_tag_id", unique: true
     t.index ["post_blog_id"], name: "index_post_tags_on_post_blog_id"
     t.index ["tag_id"], name: "index_post_tags_on_tag_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follow_id", null: false
+    t.integer "follower_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "schedules", force: :cascade do |t|

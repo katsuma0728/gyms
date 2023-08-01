@@ -5,7 +5,7 @@ class Like < ApplicationRecord
 
   has_one :activity, as: :subject, dependent: :destroy
 
-# いいね後
+  # いいね後
   after_create_commit :create_activities
 
   def name

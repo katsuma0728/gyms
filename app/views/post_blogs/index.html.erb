@@ -10,7 +10,8 @@
     </div>
   </div>
   <div class = "row">
-    <div class = "col-md-3">
+    <div class = "col-md-4">
+      <h5>タグで絞り込み</h5>
       <% @tag_list.each do |list| %>
         <%= link_to search_tag_post_blogs_path(tag_id: list.id) do %>
           <div class = "d-inline-flex bg-secondary rounded-pill m-1 p-1">
@@ -19,9 +20,7 @@
         <% end %>
       <% end %>
     </div>
-  </div>
-  <div class = "row">
-    <div class = "col-md-7 offset-md-4">
+    <div class = "col-md-8">
       <%= render 'card', post_blogs: @post_blogs %>
     </div>
   </div>
