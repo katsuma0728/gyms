@@ -61,8 +61,12 @@ class PostBlogsController < ApplicationController
 
   def show
     @post_blog = PostBlog.find(params[:id])
-    @post_comment = PostComment.new
-    @post_tags = @post_blog.tags
+    if @post_blog.status == "draft"
+      redirect_to confirm_post_blogs_path
+    else
+      @post_comment = PostComment.new
+      @post_tags = @post_blog.tags
+    end
   end
 
   def edit
