@@ -1,12 +1,17 @@
 class PostBlogsController < ApplicationController
-  # 未ログインはindexのみ
+
   skip_before_action :authenticate_user!
+  # 他のユーザーは編集、削除をできない
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   # ゲストユーザー管理
   before_action :ensure_general_user, only: [:create, :update, :show, :edit]
 
   def new
-    @post_blog = PostBlog.new
+    if user_signed_in?
+     @post_blog = PostBlog.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
@@ -56,7 +61,11 @@ class PostBlogsController < ApplicationController
 
   def confirm
     # 下書き一覧
-    @post_blogs = current_user.post_blogs.draft.page(params[:page]).per(5)
+    if user_signed_in?
+      @post_blogs = current_user.post_blogs.draft.page(params[:page]).per(5)
+    else
+      redirect_to root_path
+    end
   end
 
   def show
