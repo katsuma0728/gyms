@@ -133,11 +133,11 @@ class PostBlogsController < ApplicationController
   private
 
   def post_blog_params
-    params.require(:post_blog).permit(:image, :title, :blog, :status, :user_id, :name)
+    params.require(:post_blog).permit(:image, :title, :blog, :status, :user_id)
   end
 
   def post_blog_params_without_image
-    params.require(:post_blog).permit(:title, :blog, :status, :user_id, :name)
+    params.require(:post_blog).permit(:title, :blog, :status, :user_id)
   end
 
   # ログインユーザーと管理者以外はトップページへ
