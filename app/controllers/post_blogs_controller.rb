@@ -97,6 +97,7 @@ class PostBlogsController < ApplicationController
         if params[:post_blog][:status] == "published"
           flash[:notice] = "投稿を更新しました"
           redirect_to post_blogs_path
+        #下書きなら
         else
           flash[:notice] = "下書きを更新しました"
           if user_signed_in?
