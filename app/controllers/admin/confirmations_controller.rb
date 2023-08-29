@@ -3,7 +3,7 @@
 class Admin::ConfirmationsController < Devise::ConfirmationsController
   skip_before_action :authenticate_user!
   before_action :authenticate_admin!
-  
+
   # GET /resource/confirmation/new
   # def new
   #   super

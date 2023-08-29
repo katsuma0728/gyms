@@ -1,5 +1,4 @@
 class Relationship < ApplicationRecord
-
   belongs_to :follow, class_name: "User"
   belongs_to :follower, class_name: "User"
 
@@ -13,8 +12,7 @@ class Relationship < ApplicationRecord
   end
 
   private
-
-  def create_activities
-    Activity.create!(subject: self, user_id: follower.id, action_type: Activity.action_types[:user_follow])
-  end
+    def create_activities
+      Activity.create!(subject: self, user_id: follower.id, action_type: Activity.action_types[:user_follow])
+    end
 end
