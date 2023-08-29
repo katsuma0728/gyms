@@ -1,6 +1,4 @@
 class PostBlog < ApplicationRecord
-  #これがないとストロングパラメータでnameを追加している関係で、保存時にUnknown attributeエラーが発生する。
-  attr_accessor :name
 
   belongs_to :user
   has_many :post_comments, dependent: :destroy
