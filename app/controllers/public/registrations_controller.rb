@@ -10,10 +10,9 @@ class Public::RegistrationsController < Devise::RegistrationsController
   end
 
   protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:profile_image, :name, :birth_date, :sex, :introduction])
-  end
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:profile_image, :name, :birth_date, :sex, :introduction])
+    end
   # GET /resource/sign_up
   # def new
   #   super

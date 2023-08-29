@@ -1,5 +1,4 @@
 class Public::UsersController < ApplicationController
-
   before_action :is_matching_login_user, only: [:edit, :update, :unsubscribe]
   before_action :ensure_general_user, only: [:update, :unsubscribe]
   # カレンダーのカスタマイズ、日曜日を始まりに
@@ -18,7 +17,7 @@ class Public::UsersController < ApplicationController
   def likes
     @user = User.find(params[:id])
     likes = Like.where(user_id: @user.id).pluck(:post_blog_id)
-    #@like_posts = PostBlog.find(likes)
+    # @like_posts = PostBlog.find(likes)
     # ↑配列ではpage表示できない
     @like_posts = PostBlog.published.where(id: likes).order(created_at: :desc).page(params[:page]).per(5)
   end
@@ -30,8 +29,8 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-       flash[:notice] = "マイページを更新しました"
-       redirect_to  user_path(@user.id)
+      flash[:notice] = "マイページを更新しました"
+      redirect_to user_path(@user.id)
     else
       flash[:notice] = @user.errors.full_messages.join("\n")
       @user = User.find(params[:id])
@@ -52,26 +51,25 @@ class Public::UsersController < ApplicationController
 
 
   private
-
-  def user_params
-    params.require(:user).permit(:profile_image, :name, :birth_date, :sex, :introduction, :email)
-  end
-
-  def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
-      redirect_to user_path(current_user.id)
+    def user_params
+      params.require(:user).permit(:profile_image, :name, :birth_date, :sex, :introduction, :email)
     end
-  end
 
-  # カレンダーのカスタマイズ、日曜日を始まりに
-  def set_beginning_of_week
-    Date.beginning_of_week = :sunday
-  end
-
-  def ensure_general_user
-    if current_user.email == "guest@example.com"
-      redirect_to root_path
+    def is_matching_login_user
+      user = User.find(params[:id])
+      unless user.id == current_user.id
+        redirect_to user_path(current_user.id)
+      end
     end
-  end
+
+    # カレンダーのカスタマイズ、日曜日を始まりに
+    def set_beginning_of_week
+      Date.beginning_of_week = :sunday
+    end
+
+    def ensure_general_user
+      if current_user.email == "guest@example.com"
+        redirect_to root_path
+      end
+    end
 end

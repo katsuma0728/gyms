@@ -3,7 +3,7 @@
 class Admin::UnlocksController < Devise::UnlocksController
   skip_before_action :authenticate_user!
   before_action :authenticate_admin!
-  
+
   # GET /resource/unlock/new
   # def new
   #   super

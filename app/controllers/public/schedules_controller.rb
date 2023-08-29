@@ -1,5 +1,4 @@
 class Public::SchedulesController < ApplicationController
-
   # カレンダーのカスタマイズ、日曜日を始まりに
   before_action :set_beginning_of_week
 
@@ -24,8 +23,8 @@ class Public::SchedulesController < ApplicationController
     @schedule = Schedule.new(schedule_params)
     @schedule.user_id = current_user.id
     if @schedule.save
-       flash[:notice] = "カレンダーに新規登録しました"
-       redirect_to schedules_path
+      flash[:notice] = "カレンダーに新規登録しました"
+      redirect_to schedules_path
     else
       @user = current_user
       schedules = @user.schedules.page(params[:page]).per(10)
@@ -46,8 +45,8 @@ class Public::SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     if  @schedule.update(schedule_params)
-        flash[:notice] = "カレンダーを更新しました"
-        redirect_to schedules_path
+      flash[:notice] = "カレンダーを更新しました"
+      redirect_to schedules_path
     else
       render :edit
     end
@@ -63,26 +62,25 @@ class Public::SchedulesController < ApplicationController
 
 
   private
-
-  def schedule_params
-    params.require(:schedule).permit(:user_id, :title, :memo, :start_time)
-  end
-
-  def is_matching_login_user
-    schedules = current_user.schedules
-    @schedule = schedules.find_by(id: params[:id])
-    redirect_to post_blogs_path unless @schedule
-  end
-
-  # ゲストユーザー管理
-  def ensure_general_user
-    if current_user.email == "guest@example.com"
-      redirect_to root_path
+    def schedule_params
+      params.require(:schedule).permit(:user_id, :title, :memo, :start_time)
     end
-  end
 
-  # カレンダーのカスタマイズ、日曜日を始まりに
-  def set_beginning_of_week
-    Date.beginning_of_week = :sunday
-  end
+    def is_matching_login_user
+      schedules = current_user.schedules
+      @schedule = schedules.find_by(id: params[:id])
+      redirect_to post_blogs_path unless @schedule
+    end
+
+    # ゲストユーザー管理
+    def ensure_general_user
+      if current_user.email == "guest@example.com"
+        redirect_to root_path
+      end
+    end
+
+    # カレンダーのカスタマイズ、日曜日を始まりに
+    def set_beginning_of_week
+      Date.beginning_of_week = :sunday
+    end
 end

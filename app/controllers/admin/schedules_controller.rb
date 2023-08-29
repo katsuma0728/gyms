@@ -13,8 +13,8 @@ class Admin::SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     if  @schedule.update(schedule_params)
-        flash[:notice] = "カレンダーを更新しました"
-        redirect_to admin_user_path(@schedule.user.id)
+      flash[:notice] = "カレンダーを更新しました"
+      redirect_to admin_user_path(@schedule.user.id)
     else
       render :edit
     end
@@ -29,8 +29,7 @@ class Admin::SchedulesController < ApplicationController
 
 
   private
-
-  def schedule_params
-    params.require(:schedule).permit(:user_id, :title, :memo, :start_time)
-  end
+    def schedule_params
+      params.require(:schedule).permit(:user_id, :title, :memo, :start_time)
+    end
 end

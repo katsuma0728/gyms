@@ -1,8 +1,7 @@
 class ActivitiesController < ApplicationController
-
   def index
-    #作成日が新しい順で表示。
-     @activities = current_user.activities.where.not(checked: true).order(created_at: :desc).page(params[:page]).per(10)
+    # 作成日が新しい順で表示。
+    @activities = current_user.activities.where.not(checked: true).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def read
@@ -13,16 +12,15 @@ class ActivitiesController < ApplicationController
     end
     # 各通知もとへリダイレクト
     # いいねなら
-    if activity.subject_type == 'Like'
-    # sublect_idからpost_blog_idを取得
+    if activity.subject_type == "Like"
+      # sublect_idからpost_blog_idを取得
       redirect_to post_blog_path(Like.find(activity.subject_id).post_blog_id)
     # コメントなら
-    elsif activity.subject_type == 'PostComment'
+    elsif activity.subject_type == "PostComment"
       redirect_to post_blog_path(PostComment.find(activity.subject_id).post_blog_id)
     # フォローなら
-    elsif activity.subject_type == 'Relationship'
+    elsif activity.subject_type == "Relationship"
       redirect_to user_path(Relationship.find(activity.subject_id).follow_id)
     end
   end
-
 end

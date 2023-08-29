@@ -1,5 +1,4 @@
 class Public::RelationshipsController < ApplicationController
-
   # ゲストユーザー管理
   include AjaxHelper
   before_action :ensure_general_user, only: [:create]
@@ -9,7 +8,7 @@ class Public::RelationshipsController < ApplicationController
     @user = User.find(params[:user_id])
     follow = Relationship.create(follower_id: params[:user_id], follow_id: current_user.id)
     follow.save
-    #redirect_to request.referer
+    # redirect_to request.referer
   end
 
   # フォローを外すとき
@@ -17,7 +16,7 @@ class Public::RelationshipsController < ApplicationController
     @user = User.find(params[:user_id])
     unfollow = Relationship.find_by(follower_id: params[:user_id], follow_id: current_user.id)
     unfollow.destroy
-    #redirect_to request.referer
+    # redirect_to request.referer
   end
 
   # フォロー一覧
@@ -33,13 +32,12 @@ class Public::RelationshipsController < ApplicationController
   end
 
   private
-
-  #ゲストユーザー管理
-  def ensure_general_user
-    if current_user.email == "guest@example.com"
+    # ゲストユーザー管理
+    def ensure_general_user
+      if current_user.email == "guest@example.com"
         respond_to do |format|
         format.js { render ajax_redirect_to(root_path) }
       end
+      end
     end
-  end
 end
